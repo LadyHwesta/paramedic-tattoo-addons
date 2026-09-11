@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="paramedic_practitioner_view_form_appointment" model="ir.ui.view">
+        <field name="model">paramedic.practitioner</field>
+        <field name="inherit_id"
+               ref="paramedic_base.paramedic_practitioner_view_form" />
+        <field name="arch" type="xml">
+            <field name="npi_number" position="after">
+                <field name="service_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

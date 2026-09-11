@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_paramedic_service_staff,paramedic.service staff,model_paramedic_service,paramedic_base.group_paramedic_staff,1,1,1,1
+access_paramedic_appointment_staff,paramedic.appointment staff,model_paramedic_appointment,paramedic_base.group_paramedic_staff,1,1,1,1

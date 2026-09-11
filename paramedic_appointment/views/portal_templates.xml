@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="portal_my_home_paramedic" name="Portal home: Appointments"
+              customize_show="True" inherit_id="portal.portal_my_home"
+              priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_service_category_enable" t-value="True" />
+        </xpath>
+        <div id="portal_service_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/web/static/img/folder.svg'" />
+                <t t-set="title">My Appointments</t>
+                <t t-set="url" t-value="'/my/appointments'" />
+                <t t-set="text">Upcoming visits, and request a new one</t>
+                <t t-set="placeholder_count" t-value="'paramedic_appointment_count'" />
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_my_appointments" name="My Appointments">
+        <t t-call="portal.portal_layout">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0">My Appointments</h3>
+                <a href="/my/book" class="btn btn-primary">Request an Appointment</a>
+            </div>
+
+            <t t-set="msg" t-value="request.params.get('appt_msg')" />
+            <div t-if="msg" role="alert"
+                 t-attf-class="alert alert-#{'success' if request.params.get('appt_ok') == '1' else 'warning'}">
+                <span t-esc="msg" />
+            </div>
+
+            <h5 class="mt-3">Upcoming</h5>
+            <p t-if="not upcoming" class="text-muted">Nothing scheduled yet.</p>
+            <div t-foreach="upcoming" t-as="a" class="border rounded p-3 mb-2">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <strong t-esc="a.service_id.name" />
+                        with <span t-esc="a.practitioner_id.display_name" />
+                        <div class="text-muted small">
+                            <span t-field="a.start" />
+                        </div>
+                        <span t-if="a.state == 'requested'"
+                              class="badge text-bg-info mt-1">Awaiting confirmation</span>
+                        <span t-if="a.state == 'confirmed'"
+                              class="badge text-bg-success mt-1">Confirmed</span>
+                    </div>
+                    <form t-if="a._portal_can_cancel()"
+                          t-attf-action="/my/appointment/#{a.id}/cancel"
+                          method="post">
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()" />
+                        <button class="btn btn-sm btn-outline-danger">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+            <h5 class="mt-4">Past</h5>
+            <p t-if="not past" class="text-muted">No past appointments yet.</p>
+            <table t-if="past" class="table table-sm">
+                <thead>
+                    <tr><th>Service</th><th>Practitioner</th><th>When</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="past" t-as="a">
+                        <td t-esc="a.service_id.name" />
+                        <td t-esc="a.practitioner_id.display_name" />
+                        <td><span t-field="a.start" /></td>
+                        <td t-esc="dict(a._fields['state'].selection).get(a.state)" />
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+    </template>
+
+    <template id="portal_book_service" name="Book an Appointment">
+        <t t-call="portal.portal_layout">
+            <h3 class="mb-4">Request an Appointment</h3>
+            <p t-if="not services" class="text-muted">
+                Nothing is available to book online right now - please call
+                the studio to schedule.
+            </p>
+            <div class="row g-3">
+                <div t-foreach="services" t-as="service" class="col-12 col-md-6">
+                    <a t-attf-href="/my/book/#{service.id}"
+                       class="text-decoration-none text-reset">
+                        <div class="border rounded p-3 h-100">
+                            <h5 class="mb-1" t-esc="service.name" />
+                            <p class="text-muted small mb-0">
+                                <span t-esc="service.duration" /> hour(s)
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_book_slots" name="Choose a Time">
+        <t t-call="portal.portal_layout">
+            <h3 class="mb-1" t-esc="service.name" />
+            <p class="text-muted mb-4">Pick an open time below.</p>
+
+            <t t-set="msg" t-value="request.params.get('appt_msg')" />
+            <div t-if="msg" role="alert"
+                 t-attf-class="alert alert-#{'success' if request.params.get('appt_ok') == '1' else 'warning'}">
+                <span t-esc="msg" />
+            </div>
+
+            <p t-if="not slots_by_practitioner" class="text-muted">
+                No open times in the next few weeks - please call the studio.
+            </p>
+            <div t-foreach="slots_by_practitioner" t-as="practitioner_slots">
+                <t t-set="practitioner" t-value="practitioner_slots[0]" />
+                <t t-set="slots" t-value="practitioner_slots[1]" />
+                <h5 t-if="len(slots_by_practitioner) &gt; 1"
+                    t-esc="practitioner.display_name" class="mt-3" />
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <form t-foreach="slots" t-as="slot"
+                          t-attf-action="/my/book/#{service.id}/confirm"
+                          method="post">
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()" />
+                        <input type="hidden" name="practitioner_id"
+                               t-att-value="practitioner.id" />
+                        <input type="hidden" name="start" t-att-value="slot[0]" />
+                        <button class="btn btn-outline-primary btn-sm">
+                            <span t-esc="slot[1]" />
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="paramedic_service_view_list" model="ir.ui.view">
+        <field name="model">paramedic.service</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="duration" />
+                <field name="buffer_minutes" />
+                <field name="requires_patch_test" widget="boolean_toggle" />
+                <field name="requires_treatment_consent" widget="boolean_toggle" />
+                <field name="creates_treatment_session" widget="boolean_toggle" />
+                <field name="bookable_online" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="paramedic_service_view_form" model="ir.ui.view">
+        <field name="model">paramedic.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="duration" />
+                            <field name="buffer_minutes" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="bookable_online" />
+                            <field name="requires_patch_test" />
+                            <field name="requires_treatment_consent" />
+                            <field name="creates_treatment_session" />
+                        </group>
+                    </group>
+                    <group string="Qualified Practitioners">
+                        <field name="practitioner_ids" widget="many2many_tags"
+                               nolabel="1"
+                               placeholder="Any practitioner (leave empty)" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_paramedic_service" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">paramedic.service</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a service</p>
+            <p>A consultation, a patch test, a treatment session, a
+               touch-up - whatever she offers, each with its own duration
+               and rules for who can book it.</p>
+        </field>
+    </record>
+
+</odoo>

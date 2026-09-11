@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_paramedic_appointment"
+              name="Appointments"
+              parent="paramedic_base.menu_paramedic_root"
+              action="action_paramedic_appointment"
+              sequence="5" />
+
+    <menuitem id="menu_paramedic_appointment_requested"
+              name="Needs Confirmation"
+              parent="paramedic_base.menu_paramedic_clinical"
+              action="action_paramedic_appointment_requested"
+              sequence="5" />
+
+    <menuitem id="menu_paramedic_service"
+              name="Services"
+              parent="paramedic_base.menu_paramedic_configuration"
+              action="action_paramedic_service"
+              sequence="5" />
+
+</odoo>
