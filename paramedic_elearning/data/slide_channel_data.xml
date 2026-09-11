@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- ============================================================ -->
+    <!-- Course A: Patient Records & Clinical Documentation           -->
+    <!-- ============================================================ -->
+
+    <record id="channel_clinical" model="slide.channel">
+        <field name="name">Patient Records &amp; Clinical Documentation</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>From a patient's first visit through every session after -
+            conditions, consent, patch testing, and documentation.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('paramedic_base.group_paramedic_staff')])]" />
+    </record>
+
+    <record id="clinical_section_patients" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Patients and conditions</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="clinical_lesson_patients" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Bringing on a patient</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <p>Someone becomes a patient the moment you flag them as one -
+            whether they booked online themselves or you're entering them
+            after an in-person consultation. Open <strong>Paramedical
+            Tattoo › Patients › New</strong>, or find them
+            under Contacts and tick <strong>Is a Patient</strong>. A
+            <strong>Patient #</strong> is assigned automatically the moment
+            you do.</p>
+            <p>Fill in date of birth, emergency contact, and referring
+            provider on the new Patient tab, and record anything that
+            matters before a needle touches skin under <strong>Safety
+            History</strong> - bleeding disorders, blood thinners, keloid
+            history, known allergies. A patient who requests an appointment
+            through the website is flagged and numbered automatically too -
+            fill in their safety history at the consultation.</p>
+        </field>
+    </record>
+
+    <record id="clinical_lesson_conditions" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">The condition record</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <p>Everything that follows - consent, patch tests, sessions -
+            hangs off a <strong>condition</strong>. Open one per issue
+            you're treating (areola restoration, scar camouflage, scalp
+            micropigmentation, vitiligo repigmentation, or other), set
+            yourself as <strong>Primary Practitioner</strong>, and move its
+            status from Intake to In Treatment as you start, then Completed
+            or Discontinued when it's done. The condition's three tabs -
+            Consents, Patch Tests, Sessions - are where the rest of this
+            course's work happens.</p>
+        </field>
+    </record>
+
+    <record id="clinical_section_safety" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Consent &amp; patch testing</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="clinical_lesson_consent" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Informed consent</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <p>One record per consent - treatment, patch test, or photo
+            release - each with its own printable form. Add a row on the
+            condition's <strong>Consents</strong> tab, print it from the
+            record's Print menu (the wording changes automatically by
+            type), have the patient sign, and click <strong>Mark
+            Signed</strong>. That's what a gated service checks for - a
+            printed-but-unsigned consent doesn't count. Photo release is a
+            separate consent from treatment consent - a patient can say yes
+            to one and no to the other.</p>
+        </field>
+    </record>
+
+    <record id="clinical_lesson_patch" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Patch testing</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html">
+            <p>A documented allergy check before the pigment goes anywhere
+            near a real session. Add a row on the Patch Tests tab: pigment
+            name, lot number, today's date - the <strong>read date</strong>
+            defaults to three days later. When you check it, set the result
+            to <strong>Clear</strong> or <strong>Reaction</strong> (with
+            notes). Only the <em>most recent</em> patch test on a condition
+            counts, so a fresh clear test always supersedes an old one.</p>
+        </field>
+    </record>
+
+    <record id="clinical_section_sessions" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Documenting a session</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="clinical_lesson_sessions" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Documenting a treatment session</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <p>Whether created automatically by completing an appointment,
+            or opened directly under the condition's Sessions tab: fill in
+            pigment name and lot number, the area treated, any numbing
+            agent, your clinical notes, and whether aftercare instructions
+            were given. Upload photos under <strong>Before Photos</strong>
+            and <strong>After Photos</strong> - sessions on a condition are
+            numbered automatically in date order, so healing progression
+            stays easy to follow. If anything went wrong, tick
+            <strong>Adverse Reaction</strong> and describe it.</p>
+        </field>
+    </record>
+
+    <record id="clinical_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_clinical" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="clinical_q1" model="slide.question">
+        <field name="slide_id" ref="clinical_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A patch test was read as Clear two months ago, and a new one just came back Clear too. Which one counts for a gated service?</field>
+    </record>
+    <record id="clinical_q1_a1" model="slide.answer">
+        <field name="question_id" ref="clinical_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">The most recent one</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="clinical_q1_a2" model="slide.answer">
+        <field name="question_id" ref="clinical_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">The oldest one</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q1_a3" model="slide.answer">
+        <field name="question_id" ref="clinical_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Both must be manually averaged</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q1_a4" model="slide.answer">
+        <field name="question_id" ref="clinical_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">Neither - a condition needs three clear tests</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="clinical_q2" model="slide.question">
+        <field name="slide_id" ref="clinical_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">A patient signs the treatment consent but not the photo-release consent. Can you post their photos in your portfolio?</field>
+    </record>
+    <record id="clinical_q2_a1" model="slide.answer">
+        <field name="question_id" ref="clinical_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Yes - treatment consent covers everything</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q2_a2" model="slide.answer">
+        <field name="question_id" ref="clinical_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">No - photo release is a separate consent</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="clinical_q2_a3" model="slide.answer">
+        <field name="question_id" ref="clinical_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Only for scar camouflage conditions</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q2_a4" model="slide.answer">
+        <field name="question_id" ref="clinical_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only if the patch test was also clear</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="clinical_q3" model="slide.question">
+        <field name="slide_id" ref="clinical_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">What does every consent, patch test, and session record attach to?</field>
+    </record>
+    <record id="clinical_q3_a1" model="slide.answer">
+        <field name="question_id" ref="clinical_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">The condition</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="clinical_q3_a2" model="slide.answer">
+        <field name="question_id" ref="clinical_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">The appointment</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q3_a3" model="slide.answer">
+        <field name="question_id" ref="clinical_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">The practitioner's own record</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q3_a4" model="slide.answer">
+        <field name="question_id" ref="clinical_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Nothing - they're all independent</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="clinical_q4" model="slide.question">
+        <field name="slide_id" ref="clinical_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">How are sessions on one condition numbered?</field>
+    </record>
+    <record id="clinical_q4_a1" model="slide.answer">
+        <field name="question_id" ref="clinical_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Automatically, in date order</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="clinical_q4_a2" model="slide.answer">
+        <field name="question_id" ref="clinical_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">You type the number in yourself</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q4_a3" model="slide.answer">
+        <field name="question_id" ref="clinical_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">They aren't numbered</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="clinical_q4_a4" model="slide.answer">
+        <field name="question_id" ref="clinical_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">By practitioner, not by condition</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Course B: Scheduling & Booking                                -->
+    <!-- ============================================================ -->
+
+    <record id="channel_scheduling" model="slide.channel">
+        <field name="name">Scheduling &amp; Booking</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Setting up a practitioner and services, and booking
+            appointments - your own and the patient's own online.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('paramedic_base.group_paramedic_staff')])]" />
+    </record>
+
+    <record id="scheduling_section_setup" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="name">One-time setup</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="scheduling_lesson_practitioner" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="name">Adding yourself as a practitioner</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <p>Open <strong>Paramedical Tattoo › Configuration
+            › Practitioners › New</strong>, set
+            <strong>User</strong> to your own login, and click into
+            <strong>Working Hours</strong> to set the days and times you're
+            open - that's what the booking page uses to know when you're
+            free, and time off you add there is respected automatically.
+            Add your body-art/cosmetology licence number while you're
+            there.</p>
+            <p><strong>One thing to know:</strong> creating or editing a
+            Working Hours calendar needs Administrator access. If you're
+            the only person using the system, this already works. Bringing
+            on a practitioner later who isn't an Administrator? You'll need
+            to set their hours up for them the first time.</p>
+        </field>
+    </record>
+
+    <record id="scheduling_lesson_services" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="name">Adding your services, and the gates that protect a real session</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <p>Open <strong>Paramedical Tattoo › Configuration
+            › Services</strong> and add one row per thing you offer,
+            with its <strong>Duration</strong> and a <strong>Buffer
+            After</strong> for cleanup/prep. Tick <strong>Bookable
+            Online</strong> for anything a patient should be able to
+            request themselves - typically just the consultation.</p>
+            <p>For an actual ink session, tick <strong>Requires a Clear
+            Patch Test</strong> and/or <strong>Requires Signed Treatment
+            Consent</strong>, and <strong>Creates a Treatment Session</strong>.
+            A gated service can't be scheduled - by you or online - against
+            a patient's condition until that condition satisfies those
+            requirements. It's the system refusing to let a real session
+            get booked ahead of the safety step, not extra paperwork for
+            its own sake.</p>
+        </field>
+    </record>
+
+    <record id="scheduling_section_booking" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="name">Booking appointments</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="scheduling_lesson_booking" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="name">Booking one yourself, and confirming a request</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <p>To book it yourself: <strong>Paramedical Tattoo ›
+            Appointments › New</strong> - pick the patient, service,
+            and (for anything gated) the condition it's for. The system
+            works out the end time from the service's duration and buffer,
+            and won't let you double-book yourself.</p>
+            <p>To confirm a request that came from the website: open
+            <strong>Paramedical Tattoo › Clinical › Needs
+            Confirmation</strong>, review it, and click
+            <strong>Confirm</strong> - the patient gets a confirmation email
+            automatically. Afterward: <strong>No-show</strong> if they
+            didn't come, <strong>Cancel</strong> if plans changed, or
+            <strong>Complete</strong> if it was a real treatment session -
+            that creates the linked treatment-session record for you,
+            pre-filled and ready for clinical detail.</p>
+        </field>
+    </record>
+
+    <record id="scheduling_lesson_portal" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="name">The patient's own online booking</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html">
+            <p>A patient only ever sees services marked Bookable Online. A
+            gated service only shows up once they already have a condition
+            on file that satisfies it - a brand-new patient only ever sees
+            a consultation, never a treatment session, until you've assessed
+            them in person and opened a condition. Picking a service shows
+            real open times for the next few weeks; picking one sends a
+            request into your Needs Confirmation list. They can cancel their
+            own upcoming appointment, but only more than 24 hours out.
+            Nothing clinical is ever visible to a patient online.</p>
+        </field>
+    </record>
+
+    <record id="scheduling_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="scheduling_q1" model="slide.question">
+        <field name="slide_id" ref="scheduling_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A brand-new patient with no condition on file opens the online booking page. What can they book?</field>
+    </record>
+    <record id="scheduling_q1_a1" model="slide.answer">
+        <field name="question_id" ref="scheduling_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Only a consultation (or another ungated service)</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="scheduling_q1_a2" model="slide.answer">
+        <field name="question_id" ref="scheduling_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">Any treatment session</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q1_a3" model="slide.answer">
+        <field name="question_id" ref="scheduling_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Nothing until staff creates an account for them</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q1_a4" model="slide.answer">
+        <field name="question_id" ref="scheduling_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">A patch test only</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="scheduling_q2" model="slide.question">
+        <field name="slide_id" ref="scheduling_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">Who can create or edit a practitioner's Working Hours calendar?</field>
+    </record>
+    <record id="scheduling_q2_a1" model="slide.answer">
+        <field name="question_id" ref="scheduling_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Any staff member</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q2_a2" model="slide.answer">
+        <field name="question_id" ref="scheduling_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">Only an Administrator</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="scheduling_q2_a3" model="slide.answer">
+        <field name="question_id" ref="scheduling_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Only the practitioner it belongs to</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q2_a4" model="slide.answer">
+        <field name="question_id" ref="scheduling_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Patients, from their own portal</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="scheduling_q3" model="slide.question">
+        <field name="slide_id" ref="scheduling_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">How close to an appointment can a patient still cancel it themselves online?</field>
+    </record>
+    <record id="scheduling_q3_a1" model="slide.answer">
+        <field name="question_id" ref="scheduling_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Any time up to the start of the appointment</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q3_a2" model="slide.answer">
+        <field name="question_id" ref="scheduling_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">More than 24 hours out - closer than that, they must call</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="scheduling_q3_a3" model="slide.answer">
+        <field name="question_id" ref="scheduling_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">They can never cancel online</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q3_a4" model="slide.answer">
+        <field name="question_id" ref="scheduling_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only staff can cancel, never the patient</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="scheduling_q4" model="slide.question">
+        <field name="slide_id" ref="scheduling_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Completing an appointment for a service flagged "Creates a Treatment Session" does what?</field>
+    </record>
+    <record id="scheduling_q4_a1" model="slide.answer">
+        <field name="question_id" ref="scheduling_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Nothing extra - you create the session separately</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q4_a2" model="slide.answer">
+        <field name="question_id" ref="scheduling_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">Creates the linked treatment-session record, pre-filled and ready for clinical detail</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="scheduling_q4_a3" model="slide.answer">
+        <field name="question_id" ref="scheduling_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">Sends the patient their treatment session photos</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="scheduling_q4_a4" model="slide.answer">
+        <field name="question_id" ref="scheduling_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">Marks the patient's condition Discontinued</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

@@ -20,6 +20,11 @@ equivalent.
   prerequisites (e.g. "needs a completed patch test"), practitioner
   working hours via Odoo's `resource` module, and a portal booking page
   so a patient can request an open slot without a phone call.
+- `paramedic_elearning` — a pure-data module dropping two ready-built
+  courses into Odoo's **eLearning** app (`website_slides`): *Patient
+  Records & Clinical Documentation* and *Scheduling & Booking*, each
+  ending in a short quiz. Gated to staff (`paramedic_base.group_paramedic_staff`
+  is auto-enrolled), nothing to author by hand.
 
 ## A note on patient data
 
