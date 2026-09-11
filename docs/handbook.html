@@ -1,0 +1,650 @@
+<title>HB Ink Studio Handbook</title>
+<meta name="description" content="A non-technical, step-by-step guide to running patient records, consent, patch tests, treatment sessions, and appointment scheduling." />
+
+<!--
+  This whole file is one self-contained block.
+  To put it on an Odoo website: Website editor -> drag a
+  "Content > Embed Code" block onto a page -> paste everything below
+  -> Save -> Publish. Styles are scoped under .hbink-guide so they won't
+  touch the rest of the site. Raise --hbink-header-offset if a fixed site
+  header covers the sticky contents menu.
+-->
+
+<div class="hbink-guide">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+  .hbink-guide {
+    --hb-ground: #f5f1ed;
+    --hb-surface: #ffffff;
+    --hb-sunken: #ece5dd;
+    --hb-ink: #2b241f;
+    --hb-ink-muted: #6d6055;
+    --hb-ink-faint: #9c8f83;
+    --hb-accent: #2e6e7e;
+    --hb-accent-ink: #204f5b;
+    --hb-border: #e3dace;
+    --hb-border-strong: #cec0ae;
+    --hb-note-bg: #e8eff0;
+    --hb-good: #3f7d4f;
+    --hb-good-bg: #e7f0e6;
+    --hb-warn: #a1671e;
+    --hb-warn-bg: #f4ead7;
+    --hb-crit: #ab3a2d;
+    --hb-crit-bg: #f3e1dc;
+    --hb-code-bg: #eae1d5;
+
+    --hb-display: "Zilla Slab", Georgia, "Times New Roman", serif;
+    --hb-sans: "Karla", "Helvetica Neue", Arial, sans-serif;
+    --hb-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    /* raise this if a fixed site header overlaps the sticky contents menu */
+    --hb-header-offset: 1.25rem;
+
+    background: var(--hb-ground);
+    color: var(--hb-ink);
+    font-family: var(--hb-sans);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .hbink-guide *,
+  .hbink-guide *::before,
+  .hbink-guide *::after { box-sizing: border-box; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hbink-guide { scroll-behavior: smooth; }
+  }
+
+  .hbink-guide .hb-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  /* ---------- Masthead ---------- */
+  .hbink-guide .hb-masthead {
+    padding: clamp(2.5rem, 7vw, 4.5rem) 0 clamp(1.75rem, 4vw, 2.5rem);
+    border-bottom: 1px solid var(--hb-border);
+  }
+  .hbink-guide .hb-kicker {
+    font-family: var(--hb-mono);
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--hb-accent-ink);
+    margin: 0 0 1rem;
+  }
+  .hbink-guide h1 {
+    font-family: var(--hb-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5.4vw, 3rem);
+    line-height: 1.06;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+    color: var(--hb-ink);
+    margin: 0 0 .9rem;
+  }
+  .hbink-guide .hb-dek {
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    color: var(--hb-ink-muted);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .hbink-guide .hb-how {
+    margin: 1.6rem 0 0;
+    font-size: .95rem;
+    color: var(--hb-ink-muted);
+    max-width: 62ch;
+  }
+  .hbink-guide .hb-how strong { color: var(--hb-ink); font-weight: 700; }
+
+  /* ---------- Layout ---------- */
+  .hbink-guide .hb-layout {
+    display: grid;
+    grid-template-columns: 232px minmax(0, 70ch);
+    gap: clamp(2rem, 6vw, 5rem);
+    justify-content: center;
+    align-items: start;
+    padding: clamp(2rem, 5vw, 3.5rem) 0 5rem;
+  }
+
+  /* ---------- Sidebar nav ---------- */
+  .hbink-guide .hb-toc {
+    position: sticky;
+    top: var(--hb-header-offset);
+    align-self: start;
+    max-height: calc(100vh - var(--hb-header-offset) - 1rem);
+    overflow-y: auto;
+    padding: clamp(1.25rem, 5vw, 3rem) .25rem 2rem 0;
+  }
+  .hbink-guide .hb-toc-title {
+    font-family: var(--hb-mono);
+    font-size: .7rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--hb-ink-faint);
+    margin: 0 0 .85rem;
+  }
+  .hbink-guide .hb-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: hbtoc; }
+  .hbink-guide .hb-toc li { counter-increment: hbtoc; margin: 0; }
+  .hbink-guide .hb-toc a {
+    display: grid;
+    grid-template-columns: 1.6em 1fr;
+    gap: .5em;
+    padding: .34rem .5rem .34rem .7rem;
+    font-size: .875rem;
+    line-height: 1.35;
+    color: var(--hb-ink-muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .hbink-guide .hb-toc a::before {
+    content: counter(hbtoc, decimal-leading-zero);
+    font-family: var(--hb-mono);
+    font-size: .72rem;
+    color: var(--hb-ink-faint);
+    padding-top: .15em;
+  }
+  .hbink-guide .hb-toc a:hover { color: var(--hb-ink); }
+  .hbink-guide .hb-toc a.hb-active {
+    color: var(--hb-accent-ink);
+    border-left-color: var(--hb-accent);
+    font-weight: 600;
+  }
+  .hbink-guide .hb-toc a.hb-active::before { color: var(--hb-accent); }
+  .hbink-guide .hb-toc a.hb-plain { grid-template-columns: 1fr; padding-left: 1.05rem; }
+  .hbink-guide .hb-toc a.hb-plain::before { content: none; }
+
+  /* ---------- Content ---------- */
+  .hbink-guide main { min-width: 0; }
+
+  .hbink-guide .hb-part {
+    padding-top: 2.25rem;
+    margin-top: 2.25rem;
+    border-top: 1px solid var(--hb-border);
+    scroll-margin-top: calc(var(--hb-header-offset) + 1.5rem);
+  }
+  .hbink-guide .hb-part:first-of-type { border-top: 0; margin-top: 0; padding-top: .5rem; }
+
+  .hbink-guide .hb-eyebrow {
+    font-family: var(--hb-mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--hb-accent-ink);
+    display: flex;
+    align-items: center;
+    gap: .7em;
+    margin: 0 0 .7rem;
+  }
+  .hbink-guide .hb-eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hb-border-strong);
+  }
+
+  .hbink-guide h2 {
+    font-family: var(--hb-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3.4vw, 1.72rem);
+    line-height: 1.16;
+    letter-spacing: -.005em;
+    text-wrap: balance;
+    color: var(--hb-ink);
+    margin: 0 0 .35rem;
+  }
+  .hbink-guide .hb-lead {
+    color: var(--hb-ink-muted);
+    font-size: 1.02rem;
+    margin: .2rem 0 1.4rem;
+    max-width: 68ch;
+  }
+  .hbink-guide h3 {
+    font-family: var(--hb-display);
+    font-weight: 600;
+    font-size: 1.14rem;
+    color: var(--hb-ink);
+    margin: 2rem 0 .5rem;
+  }
+
+  .hbink-guide p { margin: 0 0 1rem; }
+  .hbink-guide main :where(p, li) { max-width: 68ch; }
+  .hbink-guide a {
+    color: var(--hb-accent-ink);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .hbink-guide strong { font-weight: 700; }
+  .hbink-guide em { font-style: italic; }
+  .hbink-guide .hb-role { font-weight: 700; color: var(--hb-ink); white-space: nowrap; }
+
+  .hbink-guide code.hb-path {
+    font-family: var(--hb-sans);
+    font-weight: 600;
+    font-size: .84em;
+    background: var(--hb-code-bg);
+    border: 1px solid var(--hb-border);
+    border-radius: 5px;
+    padding: .12em .5em;
+    color: var(--hb-ink);
+  }
+  .hbink-guide code.hb-path .hb-sep { color: var(--hb-ink-faint); margin: 0 .15em; font-weight: 400; }
+  .hbink-guide code.hb-field {
+    font-family: var(--hb-mono);
+    font-size: .82em;
+    background: var(--hb-code-bg);
+    border-radius: 4px;
+    padding: .08em .38em;
+    color: var(--hb-ink);
+  }
+
+  .hbink-guide ol.hb-steps {
+    list-style: none;
+    counter-reset: hbstep;
+    margin: 1.1rem 0 1.4rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .95rem;
+  }
+  .hbink-guide ol.hb-steps > li {
+    counter-increment: hbstep;
+    display: grid;
+    grid-template-columns: 1.9rem 1fr;
+    gap: .85rem;
+    align-items: start;
+    max-width: none;
+  }
+  .hbink-guide ol.hb-steps > li::before {
+    content: counter(hbstep);
+    font-family: var(--hb-mono);
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--hb-accent-ink);
+    background: var(--hb-sunken);
+    border: 1px solid var(--hb-border);
+    border-radius: 50%;
+    width: 1.9rem;
+    height: 1.9rem;
+    display: grid;
+    place-items: center;
+    margin-top: -.1rem;
+  }
+  .hbink-guide ol.hb-steps > li > :first-child { margin-top: 0; }
+  .hbink-guide ol.hb-steps > li > :last-child { margin-bottom: 0; }
+  .hbink-guide ol.hb-steps > li > p:only-child { margin: 0; }
+
+  .hbink-guide ul.hb-list { margin: 1rem 0; padding-left: 1.2rem; }
+  .hbink-guide ul.hb-list li { margin: .4rem 0; }
+
+  .hbink-guide .hb-note {
+    border-left: 3px solid var(--hb-accent);
+    background: var(--hb-note-bg);
+    border-radius: 0 8px 8px 0;
+    padding: .85rem 1.1rem;
+    margin: 1.2rem 0;
+    font-size: .96rem;
+  }
+  .hbink-guide .hb-note > :last-child { margin-bottom: 0; }
+  .hbink-guide .hb-note .hb-tag {
+    font-weight: 700;
+    font-size: .74rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: .25rem;
+    color: var(--hb-accent-ink);
+  }
+  .hbink-guide .hb-note.hb-watch { border-left-color: var(--hb-warn); background: var(--hb-warn-bg); }
+  .hbink-guide .hb-note.hb-watch .hb-tag { color: var(--hb-warn); }
+  .hbink-guide .hb-note.hb-rule { border-left-color: var(--hb-crit); background: var(--hb-crit-bg); }
+  .hbink-guide .hb-note.hb-rule .hb-tag { color: var(--hb-crit); }
+
+  .hbink-guide .hb-table-wrap {
+    overflow-x: auto;
+    margin: 1.2rem 0 1.5rem;
+    border: 1px solid var(--hb-border);
+    border-radius: 10px;
+  }
+  .hbink-guide table { border-collapse: collapse; width: 100%; font-size: .93rem; color: var(--hb-ink); }
+  .hbink-guide th,
+  .hbink-guide td { text-align: left; padding: .7rem .9rem; vertical-align: top; border-bottom: 1px solid var(--hb-border); }
+  .hbink-guide thead th {
+    font-weight: 700;
+    font-size: .74rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--hb-ink-muted);
+    background: var(--hb-sunken);
+    white-space: nowrap;
+  }
+  .hbink-guide tbody tr:last-child td { border-bottom: 0; }
+
+  .hbink-guide dl.hb-glossary { margin: 1.2rem 0 0; display: grid; gap: 1rem; }
+  .hbink-guide dl.hb-glossary > div { display: grid; grid-template-columns: minmax(0, 13rem) 1fr; gap: .3rem 1.4rem; }
+  .hbink-guide dl.hb-glossary dt { font-family: var(--hb-display); font-weight: 600; color: var(--hb-ink); }
+  .hbink-guide dl.hb-glossary dd { margin: 0; color: var(--hb-ink-muted); font-size: .96rem; }
+
+  .hbink-guide .hb-colophon {
+    margin: 3rem 0 0;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--hb-border);
+    font-size: .86rem;
+    color: var(--hb-ink-faint);
+  }
+
+  .hbink-guide a:focus-visible {
+    outline: 2px solid var(--hb-accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Mobile */
+  .hbink-guide .hb-toc-mobile { display: none; }
+  @media (max-width: 900px) {
+    .hbink-guide .hb-layout { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 1.5rem; }
+    .hbink-guide .hb-toc.hb-desktop { display: none; }
+    .hbink-guide .hb-toc-mobile {
+      display: block;
+      margin: 1.5rem 0 0;
+      border: 1px solid var(--hb-border);
+      border-radius: 10px;
+      background: var(--hb-surface);
+    }
+    .hbink-guide .hb-toc-mobile summary {
+      cursor: pointer;
+      padding: .85rem 1.1rem;
+      font-weight: 700;
+      font-size: .9rem;
+      list-style: none;
+      color: var(--hb-ink);
+    }
+    .hbink-guide .hb-toc-mobile summary::-webkit-details-marker { display: none; }
+    .hbink-guide .hb-toc-mobile summary::after { content: " \25BE"; color: var(--hb-ink-faint); }
+    .hbink-guide .hb-toc-mobile[open] summary::after { content: " \25B4"; }
+    .hbink-guide .hb-toc-mobile ol { list-style: none; margin: 0; padding: 0 0 .6rem; counter-reset: hbtm; }
+    .hbink-guide .hb-toc-mobile li { counter-increment: hbtm; }
+    .hbink-guide .hb-toc-mobile a { display: block; padding: .4rem 1.1rem; font-size: .88rem; color: var(--hb-ink-muted); text-decoration: none; }
+    .hbink-guide .hb-toc-mobile a::before { content: counter(hbtm, decimal-leading-zero) "  "; font-family: var(--hb-mono); font-size: .74rem; color: var(--hb-ink-faint); }
+    .hbink-guide .hb-toc-mobile a.hb-plain::before { content: none; }
+  }
+  @media (max-width: 540px) {
+    .hbink-guide dl.hb-glossary > div { grid-template-columns: 1fr; gap: .1rem; }
+    .hbink-guide ol.hb-steps > li { grid-template-columns: 1.6rem 1fr; gap: .65rem; }
+  }
+</style>
+
+<div class="hb-wrap">
+  <header class="hb-masthead">
+    <p class="hb-kicker">Practice Handbook</p>
+    <h1>HB Ink Studio Handbook</h1>
+    <p class="hb-dek">How to run the day-to-day work in the system &mdash; from a patient's first consultation through every session after.</p>
+    <p class="hb-how">Work through <strong>Part&nbsp;1</strong> once when you set up. After that, jump to whatever you're doing today. Anything in a <code class="hb-path">shaded pill</code> is a menu path &mdash; click each word in turn along the top or left of the screen.</p>
+  </header>
+
+  <div class="hb-layout">
+    <nav class="hb-toc hb-desktop" aria-label="Contents">
+      <p class="hb-toc-title">Contents</p>
+      <ol>
+        <li><a href="#hb-setup">One-time setup</a></li>
+        <li><a href="#hb-patients">Bringing on a patient</a></li>
+        <li><a href="#hb-conditions">The condition record</a></li>
+        <li><a href="#hb-consent">Informed consent</a></li>
+        <li><a href="#hb-patch">Patch testing</a></li>
+        <li><a href="#hb-scheduling">Scheduling appointments</a></li>
+        <li><a href="#hb-sessions">Documenting a session</a></li>
+        <li><a href="#hb-portal">The patient's online booking</a></li>
+        <li><a href="#hb-rhythm">The routine rhythm</a></li>
+      </ol>
+      <p class="hb-toc-title" style="margin-top:1.6rem">Reference</p>
+      <ol>
+        <li><a class="hb-plain" href="#hb-who">Who does what</a></li>
+        <li><a class="hb-plain" href="#hb-glossary">Glossary</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <details class="hb-toc-mobile">
+        <summary>Contents</summary>
+        <ol>
+          <li><a href="#hb-setup">One-time setup</a></li>
+          <li><a href="#hb-patients">Bringing on a patient</a></li>
+          <li><a href="#hb-conditions">The condition record</a></li>
+          <li><a href="#hb-consent">Informed consent</a></li>
+          <li><a href="#hb-patch">Patch testing</a></li>
+          <li><a href="#hb-scheduling">Scheduling appointments</a></li>
+          <li><a href="#hb-sessions">Documenting a session</a></li>
+          <li><a href="#hb-portal">The patient's online booking</a></li>
+          <li><a href="#hb-rhythm">The routine rhythm</a></li>
+          <li><a class="hb-plain" href="#hb-who">Who does what</a></li>
+          <li><a class="hb-plain" href="#hb-glossary">Glossary</a></li>
+        </ol>
+      </details>
+
+      <section id="hb-who" class="hb-part">
+        <p class="hb-eyebrow">Reference</p>
+        <h2>Who does what</h2>
+        <p class="hb-lead">Today it's all you. This is here for the day it isn't.</p>
+        <div class="hb-table-wrap">
+          <table>
+            <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+            <tbody>
+              <tr><td><span class="hb-role">Practitioner</span></td><td>Patient records, conditions, consent, patch tests, treatment sessions, and scheduling &mdash; everything, while it's just you.</td></tr>
+              <tr><td><span class="hb-role">Front Desk</span> <em>(if you bring someone on)</em></td><td>Confirming or rescheduling appointment requests, marking no-shows &mdash; without needing access to clinical records.</td></tr>
+              <tr><td><span class="hb-role">Patient</span></td><td>Their own page &mdash; requesting an appointment, seeing their upcoming and past visits, cancelling with enough notice.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="hb-setup" class="hb-part">
+        <p class="hb-eyebrow">Part 1</p>
+        <h2>One-time setup</h2>
+        <p class="hb-lead">Do this once, in order, before your first real patient.</p>
+
+        <h3>Add yourself as a practitioner</h3>
+        <ol class="hb-steps">
+          <li><p>Open <code class="hb-path">Paramedical Tattoo <span class="hb-sep">&rsaquo;</span> Configuration <span class="hb-sep">&rsaquo;</span> Practitioners <span class="hb-sep">&rsaquo;</span> New</code>.</p></li>
+          <li><p>Set <strong>User</strong> to your own login.</p></li>
+          <li><p>Click into <strong>Working Hours</strong>, type a name like &ldquo;Studio Hours&rdquo;, and choose <strong>Create and Edit</strong> to set the days and times you're open. This is what the booking page uses to know when you're free &mdash; time off you add there is respected automatically.</p></li>
+          <li><p>Add your body-art/cosmetology licence number while you're there. The NPI field can stay blank &mdash; it's only for if you ever bill insurance.</p></li>
+        </ol>
+        <div class="hb-note hb-watch">
+          <span class="hb-tag">One thing to know</span>
+          <p>Creating or editing a Working Hours calendar needs Administrator access. If you're the only person using this system, you already have it and this just works. If you bring on a practitioner later who isn't an Administrator, you'll need to set their hours up for them the first time.</p>
+        </div>
+
+        <h3>Add your services</h3>
+        <ol class="hb-steps">
+          <li><p>Open <code class="hb-path">Paramedical Tattoo <span class="hb-sep">&rsaquo;</span> Configuration <span class="hb-sep">&rsaquo;</span> Services</code>.</p></li>
+          <li><p>Add one row per thing you offer &mdash; a consultation, a patch test, a treatment session, a touch-up. Set the <strong>Duration</strong> and a <strong>Buffer After</strong> (cleanup and prep time before the next appointment can start).</p></li>
+          <li><p>Tick <strong>Bookable Online</strong> for anything a patient should be able to request themselves &mdash; typically just the consultation. Leave it off for anything that needs your eyes on the patient first.</p></li>
+          <li><p>For an actual ink session, tick <strong>Requires a Clear Patch Test</strong> and/or <strong>Requires Signed Treatment Consent</strong>, and <strong>Creates a Treatment Session</strong> (see <a href="#hb-sessions">Documenting a session</a>). Leave all three off for a plain consultation.</p></li>
+        </ol>
+        <div class="hb-note">
+          <span class="hb-tag">Why the gates matter</span>
+          <p>A gated service can't be scheduled &mdash; by you or online &mdash; against a patient's condition until that condition has a clear patch test and/or a signed consent on file. It's not extra paperwork for its own sake; it's the system refusing to let a real session get booked ahead of the safety step.</p>
+        </div>
+
+        <h3>Set your preferences</h3>
+        <ol class="hb-steps">
+          <li><p>Open <code class="hb-path">Settings <span class="hb-sep">&rsaquo;</span> Paramedical Appointments</code>.</p></li>
+          <li><p>Set the <strong>reminder lead time</strong> (how many days before an appointment a patient gets an email) and the <strong>online booking window</strong> (how many days ahead the booking page shows open times).</p></li>
+        </ol>
+      </section>
+
+      <section id="hb-patients" class="hb-part">
+        <p class="hb-eyebrow">Part 2</p>
+        <h2>Bringing on a patient</h2>
+        <p class="hb-lead">Someone becomes a patient in the system the moment you flag them as one &mdash; whether they booked online themselves or you're entering them after an in-person consultation.</p>
+        <ol class="hb-steps">
+          <li><p>Open <code class="hb-path">Paramedical Tattoo <span class="hb-sep">&rsaquo;</span> Patients <span class="hb-sep">&rsaquo;</span> New</code>, or find them under <strong>Contacts</strong> and tick <strong>Is a Patient</strong> near the top of the form.</p></li>
+          <li><p>A <strong>Patient #</strong> is assigned automatically the moment you do &mdash; you'll never need to make one up or track the sequence yourself.</p></li>
+          <li><p>Open the new <strong>Patient</strong> tab and fill in date of birth, emergency contact, and referring provider if there is one.</p></li>
+          <li><p>Under <strong>Safety History</strong>, record anything that matters before a needle touches skin &mdash; bleeding disorders, blood thinners, keloid history, known allergies &mdash; and anything else worth a note.</p></li>
+        </ol>
+        <div class="hb-note">
+          <span class="hb-tag">Someone booked online</span>
+          <p>A patient who requests an appointment through the website is flagged and numbered automatically &mdash; there's nothing to set up on your end before their first visit. Fill in their safety history at the consultation.</p>
+        </div>
+      </section>
+
+      <section id="hb-conditions" class="hb-part">
+        <p class="hb-eyebrow">Part 3</p>
+        <h2>The condition record</h2>
+        <p class="hb-lead">Everything that follows &mdash; consent, patch tests, sessions &mdash; hangs off a condition. Open one per issue you're treating.</p>
+        <ol class="hb-steps">
+          <li><p>From the patient's <strong>Conditions</strong> button, or <code class="hb-path">Paramedical Tattoo <span class="hb-sep">&rsaquo;</span> Conditions <span class="hb-sep">&rsaquo;</span> New</code>.</p></li>
+          <li><p>Choose the type &mdash; areola restoration, scar camouflage, scalp micropigmentation, vitiligo repigmentation, or <em>other</em> with your own description &mdash; and the area.</p></li>
+          <li><p>Set yourself as the <strong>Primary Practitioner</strong>. Once you have a second practitioner, this is what keeps one patient's care with one person across every visit.</p></li>
+          <li><p>Move the status along the top from <strong>Intake</strong> to <strong>In Treatment</strong> once you've started, and to <strong>Completed</strong> or <strong>Discontinued</strong> when it's done.</p></li>
+        </ol>
+        <p>The condition's three tabs &mdash; <strong>Consents</strong>, <strong>Patch Tests</strong>, <strong>Sessions</strong> &mdash; are where the rest of this handbook's work actually happens.</p>
+      </section>
+
+      <section id="hb-consent" class="hb-part">
+        <p class="hb-eyebrow">Part 4</p>
+        <h2>Informed consent</h2>
+        <p class="hb-lead">One record per consent &mdash; treatment, patch test, or photo release &mdash; each with its own printable form.</p>
+        <ol class="hb-steps">
+          <li><p>On the condition, open the <strong>Consents</strong> tab and add a row for the type you need.</p></li>
+          <li><p>Open it and use the <strong>Print</strong> menu (top right) to get the form &mdash; its wording changes automatically depending on the type. Print it, have the patient sign, and keep the paper copy.</p></li>
+          <li><p>Click <strong>Mark Signed</strong> to record that it's done. This is what a gated service checks for &mdash; a printed-but-unsigned consent doesn't count.</p></li>
+        </ol>
+        <div class="hb-note">
+          <span class="hb-tag">Photo release is separate</span>
+          <p>Whether you may use a patient's photos in your portfolio is its own consent, distinct from the treatment consent that lets you perform the procedure. A patient can say yes to one and no to the other.</p>
+        </div>
+      </section>
+
+      <section id="hb-patch" class="hb-part">
+        <p class="hb-eyebrow">Part 5</p>
+        <h2>Patch testing</h2>
+        <p class="hb-lead">A documented allergy check before the pigment you're about to use goes anywhere near a real session.</p>
+        <ol class="hb-steps">
+          <li><p>On the condition, open the <strong>Patch Tests</strong> tab and add a row: the pigment name, its lot number, and today's date.</p></li>
+          <li><p>The <strong>read date</strong> defaults to three days later &mdash; adjust it if you're reading it sooner or later.</p></li>
+          <li><p>When you check it, set the result to <strong>Clear</strong> or <strong>Reaction</strong> (with notes). This is what a gated service looks at &mdash; only the <em>most recent</em> patch test on a condition counts, so a fresh clear test always supersedes an old one.</p></li>
+        </ol>
+      </section>
+
+      <section id="hb-scheduling" class="hb-part">
+        <p class="hb-eyebrow">Part 6</p>
+        <h2>Scheduling appointments</h2>
+        <p class="hb-lead">Book it yourself, or confirm one a patient requested online &mdash; both land in the same calendar.</p>
+
+        <h3>Booking one yourself</h3>
+        <ol class="hb-steps">
+          <li><p>Open <code class="hb-path">Paramedical Tattoo <span class="hb-sep">&rsaquo;</span> Appointments <span class="hb-sep">&rsaquo;</span> New</code>.</p></li>
+          <li><p>Pick the patient, the service, and &mdash; for anything gated &mdash; the condition it's for. Set the start time; the system works out the end time from the service's duration and buffer, and won't let you double-book yourself.</p></li>
+        </ol>
+
+        <h3>Confirming a request from the website</h3>
+        <ol class="hb-steps">
+          <li><p>Open <code class="hb-path">Paramedical Tattoo <span class="hb-sep">&rsaquo;</span> Clinical <span class="hb-sep">&rsaquo;</span> Needs Confirmation</code>.</p></li>
+          <li><p>Review it and click <strong>Confirm</strong>. The patient gets a confirmation email automatically.</p></li>
+        </ol>
+
+        <h3>On the day, and after</h3>
+        <ul class="hb-list">
+          <li>Didn't show up? Click <strong>No-show</strong>.</li>
+          <li>Plans changed? Click <strong>Cancel</strong>.</li>
+          <li>Was it a real treatment session (the service was flagged <strong>Creates a Treatment Session</strong>)? Click <strong>Complete</strong> &mdash; this creates the linked treatment-session record for you, pre-filled with the practitioner, date, and area, ready for you to fill in the clinical detail. See the next part.</li>
+        </ul>
+      </section>
+
+      <section id="hb-sessions" class="hb-part">
+        <p class="hb-eyebrow">Part 7</p>
+        <h2>Documenting a session</h2>
+        <p class="hb-lead">Whether it was created automatically by completing an appointment, or you open one directly under the condition's <strong>Sessions</strong> tab.</p>
+        <ol class="hb-steps">
+          <li><p>Fill in the pigment name and lot number, the area treated, and any numbing agent used.</p></li>
+          <li><p>Write your clinical notes, and tick whether aftercare instructions were given (with notes on what you told them).</p></li>
+          <li><p>Upload photos under the <strong>Before Photos</strong> and <strong>After Photos</strong> tabs. Sessions on a condition are numbered automatically in date order, so its healing progression stays easy to follow.</p></li>
+          <li><p>If anything went wrong, tick <strong>Adverse Reaction</strong> and describe it &mdash; and set a <strong>Next Session Recommended Date</strong> if there's a follow-up planned.</p></li>
+        </ol>
+      </section>
+
+      <section id="hb-portal" class="hb-part">
+        <p class="hb-eyebrow">Part 8</p>
+        <h2>The patient's online booking</h2>
+        <p class="hb-lead">What a patient sees when they go to book or check their appointments &mdash; worth knowing so you can explain it if they ask.</p>
+        <ol class="hb-steps">
+          <li><p>They sign in and go to <strong>My Appointments</strong>, or straight to <code class="hb-field">/my/book</code>.</p></li>
+          <li><p>They only ever see services you've marked <strong>Bookable Online</strong>. A gated service &mdash; one requiring a patch test or consent &mdash; only shows up once <em>they already have a condition on file that satisfies it</em>. A brand-new patient will only ever see a consultation, never a treatment session, until you've assessed them in person and opened a condition.</p></li>
+          <li><p>Picking a service shows real open times for the next few weeks; picking one sends a request that lands in your <strong>Needs Confirmation</strong> list.</p></li>
+          <li><p>They can cancel their own upcoming appointment from <strong>My Appointments</strong>, but only more than 24 hours out &mdash; closer than that, they need to call you.</p></li>
+        </ol>
+        <p>Nothing clinical &mdash; no condition, consent, patch test, or session detail &mdash; is ever visible to a patient online. That side of the system stays entirely yours.</p>
+      </section>
+
+      <section id="hb-rhythm" class="hb-part">
+        <p class="hb-eyebrow">Part 9</p>
+        <h2>The routine rhythm</h2>
+        <p class="hb-lead">A rough cadence once you're up and running.</p>
+        <div class="hb-table-wrap">
+          <table>
+            <thead><tr><th>When</th><th>Do this</th></tr></thead>
+            <tbody>
+              <tr><td>Each day</td><td>Check <strong>Needs Confirmation</strong> for overnight booking requests.</td></tr>
+              <tr><td>After each visit</td><td>Complete the appointment; fill in the treatment session's clinical detail and photos while it's fresh.</td></tr>
+              <tr><td>Ongoing</td><td>Read patch tests on their due date and record the result before the linked session gets booked.</td></tr>
+              <tr><td>Weekly</td><td>Glance at the appointments calendar for the week ahead; confirm anything still pending.</td></tr>
+              <tr><td>As you grow</td><td>Adding a second practitioner? Give them a login, add a Practitioner record with their own working hours, and set which services they're qualified for on each service's <strong>Qualified Practitioners</strong> list &mdash; leave it empty to allow anyone.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="hb-glossary" class="hb-part">
+        <p class="hb-eyebrow">Reference</p>
+        <h2>Glossary</h2>
+        <dl class="hb-glossary">
+          <div><dt>Condition</dt><dd>What's being treated &mdash; the record every consent, patch test, and session for that issue is attached to.</dd></div>
+          <div><dt>Patch test</dt><dd>A small application of the actual pigment, read a few days later to check for a reaction before it's used in a real session.</dd></div>
+          <div><dt>Gated service</dt><dd>A service that can't be booked against a condition until a patch test is clear and/or a treatment consent is signed for it.</dd></div>
+          <div><dt>Buffer time</dt><dd>Cleanup and prep time blocked on the calendar right after an appointment, before the next one can start.</dd></div>
+          <div><dt>Treatment session</dt><dd>One clinical visit's record &mdash; pigment, area, notes, aftercare, photos &mdash; numbered in order within its condition.</dd></div>
+          <div><dt>Requested / Confirmed</dt><dd>An appointment's first two states &mdash; requested means a patient asked for it online and it's waiting on you.</dd></div>
+          <div><dt>Working Hours</dt><dd>A practitioner's schedule &mdash; the days and times the booking page treats as open, time off included.</dd></div>
+          <div><dt>Adverse reaction</dt><dd>Any unwanted response to pigment or procedure, flagged on a patch test or a session so it's part of the permanent record.</dd></div>
+        </dl>
+
+        <p class="hb-colophon">Keep this open in a tab. When something on screen doesn't match what's written here, trust the screen &mdash; the menus move as the software updates.</p>
+      </section>
+    </main>
+  </div>
+</div>
+</div>
+
+<script>
+  (function () {
+    var root = document.querySelector('.hbink-guide');
+    if (!root) return;
+    var links = Array.prototype.slice.call(
+      root.querySelectorAll('.hb-toc.hb-desktop a[href^="#"]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+    var current = null;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var link = byId[e.target.id];
+        if (!link || link === current) return;
+        if (current) current.classList.remove('hb-active');
+        link.classList.add('hb-active');
+        current = link;
+      });
+    }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+    root.querySelectorAll('main section[id]').forEach(function (s) {
+      obs.observe(s);
+    });
+  })();
+</script>
