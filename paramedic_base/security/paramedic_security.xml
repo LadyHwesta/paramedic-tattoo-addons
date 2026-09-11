@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="module_category_paramedic" model="ir.module.category">
+        <field name="name">Paramedical Tattoo</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="privilege_paramedic" model="res.groups.privilege">
+        <field name="name">Paramedical Tattoo</field>
+        <field name="category_id" ref="module_category_paramedic" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_paramedic_staff" model="res.groups">
+        <field name="name">Practitioner / Staff</field>
+        <field name="privilege_id" ref="privilege_paramedic" />
+        <field name="comment">Full access to patient records, conditions,
+            consents, patch tests, and treatment sessions. Never grant this
+            to a portal or public user.</field>
+    </record>
+
+</odoo>

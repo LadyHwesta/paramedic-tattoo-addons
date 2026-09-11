@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_paramedic_practitioner,paramedic.practitioner staff,model_paramedic_practitioner,group_paramedic_staff,1,1,1,1
+access_patient_condition,patient.condition staff,model_patient_condition,group_paramedic_staff,1,1,1,1
+access_patient_consent,patient.consent staff,model_patient_consent,group_paramedic_staff,1,1,1,1
+access_patient_patch_test,patient.patch_test staff,model_patient_patch_test,group_paramedic_staff,1,1,1,1
+access_patient_treatment_session,patient.treatment.session staff,model_patient_treatment_session,group_paramedic_staff,1,1,1,1

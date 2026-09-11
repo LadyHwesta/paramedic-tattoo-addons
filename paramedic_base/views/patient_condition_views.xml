@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="patient_condition_view_list" model="ir.ui.view">
+        <field name="model">patient.condition</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="partner_id" />
+                <field name="condition_type" />
+                <field name="area" />
+                <field name="onset_date" />
+                <field name="practitioner_id" />
+                <field name="patch_test_clear" widget="boolean_toggle" />
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-success="state == 'active'"
+                       decoration-muted="state in ('completed', 'discontinued')" />
+            </list>
+        </field>
+    </record>
+
+    <record id="patient_condition_view_form" model="ir.ui.view">
+        <field name="model">patient.condition</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,active,completed" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_sessions" type="object"
+                                class="oe_stat_button" icon="fa-calendar-check-o">
+                            <field name="session_count" widget="statinfo"
+                                   string="Sessions" />
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="display_name" readonly="1" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" />
+                            <field name="condition_type" />
+                            <field name="condition_type_other"
+                                   invisible="condition_type != 'other'"
+                                   required="condition_type == 'other'" />
+                            <field name="area" />
+                        </group>
+                        <group>
+                            <field name="practitioner_id" />
+                            <field name="onset_date" />
+                            <field name="related_surgery_date" />
+                            <field name="patch_test_clear" invisible="1" />
+                        </group>
+                    </group>
+                    <field name="referring_notes" placeholder="Referral details..." />
+                    <notebook>
+                        <page string="Consents" name="consents">
+                            <field name="consent_ids">
+                                <list editable="bottom">
+                                    <field name="consent_type" />
+                                    <field name="date" />
+                                    <field name="signed" widget="boolean_toggle" />
+                                    <field name="signature_method" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Patch Tests" name="patch_tests">
+                            <field name="patch_test_ids">
+                                <list editable="bottom">
+                                    <field name="pigment_name" />
+                                    <field name="pigment_lot" />
+                                    <field name="application_date" />
+                                    <field name="read_date" />
+                                    <field name="result" widget="badge"
+                                           decoration-success="result == 'clear'"
+                                           decoration-danger="result == 'reaction'"
+                                           decoration-warning="result == 'pending'" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Sessions" name="sessions">
+                            <field name="session_ids" context="{
+                                'default_condition_id': id,
+                                'default_partner_id': partner_id,
+                                'default_practitioner_id': practitioner_id}">
+                                <list editable="bottom">
+                                    <field name="session_number" />
+                                    <field name="date" />
+                                    <field name="practitioner_id" />
+                                    <field name="area_treated" />
+                                    <field name="adverse_reaction"
+                                           widget="boolean_toggle" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="patient_condition_view_search" model="ir.ui.view">
+        <field name="model">patient.condition</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="practitioner_id" />
+                <field name="condition_type" />
+                <filter name="active_treatment" string="In Treatment"
+                        domain="[('state', '=', 'active')]" />
+                <filter name="patch_test_needed" string="Patch Test Not Clear"
+                        domain="[('patch_test_clear', '=', False)]" />
+                <separator />
+                <group>
+                    <filter name="group_practitioner" string="Practitioner"
+                            context="{'group_by': 'practitioner_id'}" />
+                    <filter name="group_condition_type" string="Condition"
+                            context="{'group_by': 'condition_type'}" />
+                    <filter name="group_state" string="Status"
+                            context="{'group_by': 'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_patient_condition" model="ir.actions.act_window">
+        <field name="name">Conditions</field>
+        <field name="res_model">patient.condition</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active_treatment': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Log a patient's condition</p>
+            <p>Every consent, patch test, and treatment session for a
+               patient hangs off the condition being treated.</p>
+        </field>
+    </record>
+
+</odoo>

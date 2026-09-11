@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="patient_patch_test_view_list" model="ir.ui.view">
+        <field name="model">patient.patch_test</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="partner_id" />
+                <field name="condition_id" />
+                <field name="pigment_name" />
+                <field name="application_date" />
+                <field name="read_date" />
+                <field name="result" widget="badge"
+                       decoration-success="result == 'clear'"
+                       decoration-danger="result == 'reaction'"
+                       decoration-warning="result == 'pending'" />
+            </list>
+        </field>
+    </record>
+
+    <record id="patient_patch_test_view_form" model="ir.ui.view">
+        <field name="model">patient.patch_test</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_mark_clear" type="object"
+                            string="Mark Clear" class="btn-primary"
+                            invisible="result == 'clear'" />
+                    <button name="action_mark_reaction" type="object"
+                            string="Mark Reaction"
+                            invisible="result == 'reaction'" />
+                    <field name="result" widget="statusbar"
+                           statusbar_visible="pending,clear" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="display_name" readonly="1" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="1" />
+                            <field name="condition_id" />
+                            <field name="pigment_name" />
+                            <field name="pigment_lot" />
+                        </group>
+                        <group>
+                            <field name="application_date" />
+                            <field name="read_date" />
+                        </group>
+                    </group>
+                    <field name="reaction_notes"
+                           invisible="result != 'reaction'"
+                           placeholder="Describe the reaction..." />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_patient_patch_test" model="ir.actions.act_window">
+        <field name="name">Patch Tests</field>
+        <field name="res_model">patient.patch_test</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

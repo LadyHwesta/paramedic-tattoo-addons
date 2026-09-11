@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_paramedic_root"
+              name="Paramedical Tattoo"
+              groups="paramedic_base.group_paramedic_staff"
+              sequence="90" />
+
+    <menuitem id="menu_patient"
+              name="Patients"
+              parent="menu_paramedic_root"
+              action="action_patient"
+              sequence="10" />
+
+    <menuitem id="menu_patient_condition"
+              name="Conditions"
+              parent="menu_paramedic_root"
+              action="action_patient_condition"
+              sequence="20" />
+
+    <menuitem id="menu_patient_treatment_session"
+              name="Treatment Sessions"
+              parent="menu_paramedic_root"
+              action="action_patient_treatment_session"
+              sequence="30" />
+
+    <menuitem id="menu_paramedic_clinical"
+              name="Clinical"
+              parent="menu_paramedic_root"
+              sequence="40" />
+
+    <menuitem id="menu_patient_patch_test"
+              name="Patch Tests"
+              parent="menu_paramedic_clinical"
+              action="action_patient_patch_test"
+              sequence="10" />
+
+    <menuitem id="menu_patient_consent"
+              name="Consents"
+              parent="menu_paramedic_clinical"
+              action="action_patient_consent"
+              sequence="20" />
+
+    <menuitem id="menu_paramedic_configuration"
+              name="Configuration"
+              parent="menu_paramedic_root"
+              sequence="100" />
+
+    <menuitem id="menu_paramedic_practitioner"
+              name="Practitioners"
+              parent="menu_paramedic_configuration"
+              action="action_paramedic_practitioner"
+              sequence="10" />
+
+</odoo>

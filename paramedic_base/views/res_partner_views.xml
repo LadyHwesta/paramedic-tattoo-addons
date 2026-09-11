@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_partner_form_paramedic" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="category_id" position="before">
+                <field name="is_patient" groups="paramedic_base.group_paramedic_staff" />
+            </field>
+            <page name="internal_notes" position="after">
+                <page name="patient" string="Patient"
+                      invisible="not is_patient"
+                      groups="paramedic_base.group_paramedic_staff">
+                    <div class="oe_button_box" name="patient_button_box">
+                        <button name="action_view_conditions" type="object"
+                                class="oe_stat_button" icon="fa-heartbeat">
+                            <field name="condition_count" widget="statinfo"
+                                   string="Conditions" />
+                        </button>
+                    </div>
+                    <group>
+                        <group string="Patient Info">
+                            <field name="patient_ref" readonly="1" />
+                            <field name="date_of_birth" />
+                            <field name="emergency_contact_name" />
+                            <field name="emergency_contact_phone" />
+                        </group>
+                        <group string="Referral">
+                            <field name="referring_provider_name" />
+                            <field name="referring_provider_contact" />
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Safety History">
+                            <field name="has_bleeding_disorder" />
+                            <field name="takes_blood_thinners" />
+                            <field name="has_keloid_history" />
+                            <field name="has_allergies" />
+                            <field name="allergy_notes"
+                                   invisible="not has_allergies" />
+                        </group>
+                        <group string="Consent &amp; Preferences">
+                            <field name="photo_marketing_consent" />
+                        </group>
+                    </group>
+                    <group string="Other Relevant Medical Notes">
+                        <field name="relevant_medical_notes" nolabel="1" />
+                    </group>
+                    <group string="Insurance (if applicable)"
+                           invisible="not insurance_payer_name and not insurance_member_id">
+                        <field name="insurance_payer_name" />
+                        <field name="insurance_member_id" />
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_patient', '=', True)]</field>
+        <field name="context">{'default_is_patient': True, 'default_is_company': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a patient</p>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_paramedic" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <separator />
+                <filter name="is_patient" string="Patients"
+                        domain="[('is_patient', '=', True)]" />
+            </filter>
+        </field>
+    </record>
+
+</odoo>

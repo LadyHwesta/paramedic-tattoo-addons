@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="patient_treatment_session_view_list" model="ir.ui.view">
+        <field name="model">patient.treatment.session</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="partner_id" />
+                <field name="condition_id" />
+                <field name="session_number" />
+                <field name="date" />
+                <field name="practitioner_id" />
+                <field name="adverse_reaction" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="patient_treatment_session_view_form" model="ir.ui.view">
+        <field name="model">patient.treatment.session</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="display_name" readonly="1" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="1" />
+                            <field name="condition_id" />
+                            <field name="practitioner_id" />
+                            <field name="session_number" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="date" />
+                            <field name="area_treated" />
+                            <field name="pigment_name" />
+                            <field name="pigment_lot" />
+                            <field name="numbing_agent" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes" placeholder="Clinical notes..." />
+                    </group>
+                    <group>
+                        <group string="Aftercare">
+                            <field name="aftercare_given" />
+                            <field name="aftercare_notes"
+                                   invisible="not aftercare_given" />
+                        </group>
+                        <group string="Follow-up">
+                            <field name="adverse_reaction" />
+                            <field name="adverse_reaction_notes"
+                                   invisible="not adverse_reaction" />
+                            <field name="next_session_recommended_date" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Before Photos" name="before_photos">
+                            <field name="before_photo_ids" widget="many2many_binary" />
+                        </page>
+                        <page string="After Photos" name="after_photos">
+                            <field name="after_photo_ids" widget="many2many_binary" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="patient_treatment_session_view_search" model="ir.ui.view">
+        <field name="model">patient.treatment.session</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="practitioner_id" />
+                <filter name="adverse_reaction" string="Adverse Reactions"
+                        domain="[('adverse_reaction', '=', True)]" />
+                <group>
+                    <filter name="group_practitioner" string="Practitioner"
+                            context="{'group_by': 'practitioner_id'}" />
+                    <filter name="group_date" string="Month"
+                            context="{'group_by': 'date:month'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_patient_treatment_session" model="ir.actions.act_window">
+        <field name="name">Treatment Sessions</field>
+        <field name="res_model">patient.treatment.session</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

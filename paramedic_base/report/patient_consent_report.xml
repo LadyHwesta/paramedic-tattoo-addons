@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_patient_consent" model="ir.actions.report">
+        <field name="name">Patient Consent Form</field>
+        <field name="model">patient.consent</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">paramedic_base.patient_consent</field>
+        <field name="report_file">paramedic_base.patient_consent</field>
+        <field name="print_report_name">
+            'Consent - %s' % (object.partner_id.name)
+        </field>
+        <field name="binding_model_id" ref="model_patient_consent" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="patient_consent">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <t t-if="o.consent_type == 'treatment'">Treatment Consent</t>
+                            <t t-elif="o.consent_type == 'patch_test'">Patch Test Consent</t>
+                            <t t-else="">Photo Release</t>
+                        </h2>
+                        <p>
+                            Patient: <strong><span t-field="o.partner_id.name" /></strong>
+                            &#8195; Date: <span t-field="o.date" />
+                        </p>
+                        <p t-if="o.condition_id">
+                            Regarding: <span t-esc="o.condition_id.display_name" />
+                        </p>
+
+                        <div t-if="o.consent_type == 'treatment'">
+                            <p>I understand that the procedure I am about to
+                               undergo involves the introduction of pigment
+                               into the skin using a needle, and that this
+                               carries risk of infection, allergic reaction,
+                               unsatisfactory cosmetic result, or the need for
+                               additional sessions to achieve the desired
+                               result.</p>
+                            <p>I have disclosed my relevant medical history
+                               to my practitioner, including any bleeding
+                               disorders, blood-thinning medication, history
+                               of keloid scarring, and known allergies. I
+                               understand that results vary and that no
+                               specific outcome is guaranteed.</p>
+                            <p>I have received aftercare instructions and
+                               understand it is my responsibility to follow
+                               them.</p>
+                        </div>
+                        <div t-elif="o.consent_type == 'patch_test'">
+                            <p>I understand that a small amount of pigment
+                               will be applied to my skin to check for an
+                               allergic reaction before treatment begins, and
+                               that I must return to have it read within the
+                               window my practitioner specifies (typically
+                               48-72 hours). I will contact the practice
+                               immediately if I notice redness, swelling, or
+                               other reaction before then.</p>
+                        </div>
+                        <div t-else="">
+                            <p>I grant permission for before/after photographs
+                               taken during my treatment to be used for the
+                               practice's portfolio and marketing materials.
+                               No identifying information beyond the images
+                               themselves will be shared without my separate,
+                               written permission. I may withdraw this
+                               permission at any time in writing.</p>
+                        </div>
+
+                        <p class="mt-4">
+                            <span style="font-size:16px;">&#9744;</span>
+                            I have read and accept the above.
+                        </p>
+
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <p>_____________________________</p>
+                                <p>Patient Signature</p>
+                            </div>
+                            <div class="col-6">
+                                <p>_____________________________</p>
+                                <p>Date</p>
+                            </div>
+                        </div>
+
+                        <p class="mt-4 small text-muted" t-if="o.signed">
+                            Recorded as signed on
+                            <span t-field="o.date" />
+                            <t t-if="o.signature_method">
+                                (<span t-esc="o.signature_method" />)
+                            </t>.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
