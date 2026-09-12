@@ -31,20 +31,53 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>Someone becomes a patient the moment you flag them as one -
-            whether they booked online themselves or you're entering them
-            after an in-person consultation. Open <strong>Paramedical
-            Tattoo › Patients › New</strong>, or find them
-            under Contacts and tick <strong>Is a Patient</strong>. A
-            <strong>Patient #</strong> is assigned automatically the moment
-            you do.</p>
-            <p>Fill in date of birth, emergency contact, and referring
-            provider on the new Patient tab, and record anything that
-            matters before a needle touches skin under <strong>Safety
-            History</strong> - bleeding disorders, blood thinners, keloid
-            history, known allergies. A patient who requests an appointment
-            through the website is flagged and numbered automatically too -
-            fill in their safety history at the consultation.</p>
+            <div class="oe-course-content">
+                <p>Someone becomes a patient the moment you flag them as one
+                - whether they booked online themselves or you're entering
+                them after an in-person consultation.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-user-plus" /></span>
+                            Tick "Is a Patient"
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-hashtag" /></span>
+                            Patient # assigned automatically
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        open <strong>Paramedical Tattoo ›
+                        Patients › New</strong>, or find them under
+                        Contacts and tick the box.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-heartbeat" /></span>
+                    <div>
+                        <span class="oe-callout-label">Before a needle touches skin</span>
+                        <p>Fill in date of birth, emergency contact, and
+                        referring provider on the new Patient tab, and
+                        record anything that matters under <strong>Safety
+                        History</strong> - bleeding disorders, blood
+                        thinners, keloid history, known allergies.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-globe" /></span>
+                    <div>
+                        <span class="oe-callout-label">Requested online?</span>
+                        <p>A patient who requests an appointment through the
+                        website is flagged and numbered automatically too -
+                        fill in their safety history at the consultation.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -54,15 +87,46 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>Everything that follows - consent, patch tests, sessions -
-            hangs off a <strong>condition</strong>. Open one per issue
-            you're treating (areola restoration, scar camouflage, scalp
-            micropigmentation, vitiligo repigmentation, or other), set
-            yourself as <strong>Primary Practitioner</strong>, and move its
-            status from Intake to In Treatment as you start, then Completed
-            or Discontinued when it's done. The condition's three tabs -
-            Consents, Patch Tests, Sessions - are where the rest of this
-            course's work happens.</p>
+            <div class="oe-course-content">
+                <p>Everything that follows - consent, patch tests, sessions
+                - hangs off a <strong>condition</strong>. Open one per issue
+                you're treating (areola restoration, scar camouflage, scalp
+                micropigmentation, vitiligo repigmentation, or other), and
+                set yourself as <strong>Primary Practitioner</strong>.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-badge">Intake</span>
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-accent">In Treatment</span>
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">Completed</span>
+                            or
+                            <span class="oe-badge oe-badge-warn">Discontinued</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        move the condition's status as you start, and again
+                        when it's done.
+                    </p>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-folder-open" /></span>
+                    <div>
+                        <span class="oe-callout-label">Where the rest of this course happens</span>
+                        <p>The condition's three tabs - Consents, Patch
+                        Tests, Sessions - are where the rest of this
+                        course's work happens.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -79,15 +143,38 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p>One record per consent - treatment, patch test, or photo
-            release - each with its own printable form. Add a row on the
-            condition's <strong>Consents</strong> tab, print it from the
-            record's Print menu (the wording changes automatically by
-            type), have the patient sign, and click <strong>Mark
-            Signed</strong>. That's what a gated service checks for - a
-            printed-but-unsigned consent doesn't count. Photo release is a
-            separate consent from treatment consent - a patient can say yes
-            to one and no to the other.</p>
+            <div class="oe-course-content">
+                <p>One record per consent - treatment, patch test, or photo
+                release - each with its own printable form.</p>
+
+                <ol class="oe-steps">
+                    <li>
+                        <p>Add a row on the condition's
+                        <strong>Consents</strong> tab.</p>
+                    </li>
+                    <li>
+                        <p>Print it from the record's Print menu (the
+                        wording changes automatically by type).</p>
+                    </li>
+                    <li>
+                        <p>Have the patient sign.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Mark Signed</strong>.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-pencil-square-o" /></span>
+                    <div>
+                        <span class="oe-callout-label">What a gated service checks for</span>
+                        <p>A printed-but-unsigned consent doesn't count.
+                        Photo release is a separate consent from treatment
+                        consent - a patient can say yes to one and no to the
+                        other.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -97,13 +184,44 @@
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
         <field name="html_content" type="html">
-            <p>A documented allergy check before the pigment goes anywhere
-            near a real session. Add a row on the Patch Tests tab: pigment
-            name, lot number, today's date - the <strong>read date</strong>
-            defaults to three days later. When you check it, set the result
-            to <strong>Clear</strong> or <strong>Reaction</strong> (with
-            notes). Only the <em>most recent</em> patch test on a condition
-            counts, so a fresh clear test always supersedes an old one.</p>
+            <div class="oe-course-content">
+                <p>A documented allergy check before the pigment goes
+                anywhere near a real session. Add a row on the Patch Tests
+                tab: pigment name, lot number, today's date - the
+                <strong>read date</strong> defaults to three days later.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-flask" /></span>
+                            Applied today
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-calendar" /></span>
+                            Read date, +3 days
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">Clear</span>
+                            or
+                            <span class="oe-badge oe-badge-warn">Reaction</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        record the result with notes when you check it.
+                    </p>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-history" /></span>
+                    <div>
+                        <span class="oe-callout-label">Only the most recent counts</span>
+                        <p>A fresh clear test always supersedes an old one.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -120,15 +238,39 @@
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
-            <p>Whether created automatically by completing an appointment,
-            or opened directly under the condition's Sessions tab: fill in
-            pigment name and lot number, the area treated, any numbing
-            agent, your clinical notes, and whether aftercare instructions
-            were given. Upload photos under <strong>Before Photos</strong>
-            and <strong>After Photos</strong> - sessions on a condition are
-            numbered automatically in date order, so healing progression
-            stays easy to follow. If anything went wrong, tick
-            <strong>Adverse Reaction</strong> and describe it.</p>
+            <div class="oe-course-content">
+                <p>Whether created automatically by completing an
+                appointment, or opened directly under the condition's
+                Sessions tab: fill in pigment name and lot number, the area
+                treated, any numbing agent, your clinical notes, and
+                whether aftercare instructions were given.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-columns">
+                        <div class="oe-column">
+                            <h4><i class="fa fa-picture-o" /> Before Photos</h4>
+                        </div>
+                        <div class="oe-column">
+                            <h4><i class="fa fa-picture-o" /> After Photos</h4>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        sessions on a condition are numbered automatically
+                        in date order, so healing progression stays easy to
+                        follow.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">If anything went wrong</span>
+                        <p>Tick <strong>Adverse Reaction</strong> and
+                        describe it.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -289,19 +431,42 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>Open <strong>Paramedical Tattoo › Configuration
-            › Practitioners › New</strong>, set
-            <strong>User</strong> to your own login, and click into
-            <strong>Working Hours</strong> to set the days and times you're
-            open - that's what the booking page uses to know when you're
-            free, and time off you add there is respected automatically.
-            Add your body-art/cosmetology licence number while you're
-            there.</p>
-            <p><strong>One thing to know:</strong> creating or editing a
-            Working Hours calendar needs Administrator access. If you're
-            the only person using the system, this already works. Bringing
-            on a practitioner later who isn't an Administrator? You'll need
-            to set their hours up for them the first time.</p>
+            <div class="oe-course-content">
+                <ol class="oe-steps">
+                    <li>
+                        <p>Open <strong>Paramedical Tattoo ›
+                        Configuration › Practitioners ›
+                        New</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Set <strong>User</strong> to your own login.</p>
+                    </li>
+                    <li>
+                        <p>Click into <strong>Working Hours</strong> to set
+                        the days and times you're open - that's what the
+                        booking page uses to know when you're free, and
+                        time off you add there is respected
+                        automatically.</p>
+                    </li>
+                    <li>
+                        <p>Add your body-art/cosmetology licence number
+                        while you're there.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-key" /></span>
+                    <div>
+                        <span class="oe-callout-label">One thing to know</span>
+                        <p>Creating or editing a Working Hours calendar
+                        needs Administrator access. If you're the only
+                        person using the system, this already works.
+                        Bringing on a practitioner later who isn't an
+                        Administrator? You'll need to set their hours up for
+                        them the first time.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -311,20 +476,46 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>Open <strong>Paramedical Tattoo › Configuration
-            › Services</strong> and add one row per thing you offer,
-            with its <strong>Duration</strong> and a <strong>Buffer
-            After</strong> for cleanup/prep. Tick <strong>Bookable
-            Online</strong> for anything a patient should be able to
-            request themselves - typically just the consultation.</p>
-            <p>For an actual ink session, tick <strong>Requires a Clear
-            Patch Test</strong> and/or <strong>Requires Signed Treatment
-            Consent</strong>, and <strong>Creates a Treatment Session</strong>.
-            A gated service can't be scheduled - by you or online - against
-            a patient's condition until that condition satisfies those
-            requirements. It's the system refusing to let a real session
-            get booked ahead of the safety step, not extra paperwork for
-            its own sake.</p>
+            <div class="oe-course-content">
+                <p>Open <strong>Paramedical Tattoo › Configuration
+                › Services</strong> and add one row per thing you
+                offer, with its <strong>Duration</strong> and a
+                <strong>Buffer After</strong> for cleanup/prep. Tick
+                <strong>Bookable Online</strong> for anything a patient
+                should be able to request themselves - typically just the
+                consultation.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Service: Ink Session
+                    </div>
+                    <div class="oe-mock-body">
+                        <p>
+                            <span class="oe-badge oe-badge-warn">Requires a Clear Patch Test</span>
+                            <span class="oe-badge oe-badge-warn">Requires Signed Treatment Consent</span>
+                            <span class="oe-badge oe-badge-accent">Creates a Treatment Session</span>
+                        </p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the gates on an actual ink session.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-shield" /></span>
+                    <div>
+                        <span class="oe-callout-label">What the gate does</span>
+                        <p>A gated service can't be scheduled - by you or
+                        online - against a patient's condition until that
+                        condition satisfies those requirements. It's the
+                        system refusing to let a real session get booked
+                        ahead of the safety step, not extra paperwork for
+                        its own sake.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -341,20 +532,47 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p>To book it yourself: <strong>Paramedical Tattoo ›
-            Appointments › New</strong> - pick the patient, service,
-            and (for anything gated) the condition it's for. The system
-            works out the end time from the service's duration and buffer,
-            and won't let you double-book yourself.</p>
-            <p>To confirm a request that came from the website: open
-            <strong>Paramedical Tattoo › Clinical › Needs
-            Confirmation</strong>, review it, and click
-            <strong>Confirm</strong> - the patient gets a confirmation email
-            automatically. Afterward: <strong>No-show</strong> if they
-            didn't come, <strong>Cancel</strong> if plans changed, or
-            <strong>Complete</strong> if it was a real treatment session -
-            that creates the linked treatment-session record for you,
-            pre-filled and ready for clinical detail.</p>
+            <div class="oe-course-content">
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-calendar-plus-o" /> Booking it yourself</h4>
+                        <p class="mb-0"><strong>Paramedical Tattoo ›
+                        Appointments › New</strong> - pick the patient,
+                        service, and (for anything gated) the condition it's
+                        for. The system works out the end time from the
+                        service's duration and buffer, and won't let you
+                        double-book yourself.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-check-square-o" /> Confirming a web request</h4>
+                        <p class="mb-0">Open <strong>Paramedical Tattoo ›
+                        Clinical › Needs Confirmation</strong>, review
+                        it, and click <strong>Confirm</strong> - the patient
+                        gets a confirmation email automatically.</p>
+                    </div>
+                </div>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-warn">No-show</span>
+                        </div>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge">Cancel</span>
+                        </div>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">Complete</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the three ways to close out an appointment -
+                        Complete creates the linked treatment-session
+                        record for you, pre-filled and ready for clinical
+                        detail.
+                    </p>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -364,15 +582,53 @@
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
         <field name="html_content" type="html">
-            <p>A patient only ever sees services marked Bookable Online. A
-            gated service only shows up once they already have a condition
-            on file that satisfies it - a brand-new patient only ever sees
-            a consultation, never a treatment session, until you've assessed
-            them in person and opened a condition. Picking a service shows
-            real open times for the next few weeks; picking one sends a
-            request into your Needs Confirmation list. They can cancel their
-            own upcoming appointment, but only more than 24 hours out.
-            Nothing clinical is ever visible to a patient online.</p>
+            <div class="oe-course-content">
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-list" /></span>
+                            Pick a service
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-clock-o" /></span>
+                            Real open times, next few weeks
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-inbox" /></span>
+                            Lands in Needs Confirmation
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        a patient only ever sees services marked Bookable
+                        Online.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-eye-slash" /></span>
+                    <div>
+                        <span class="oe-callout-label">A gated service stays hidden until it's earned</span>
+                        <p>It only shows up once they already have a
+                        condition on file that satisfies it - a brand-new
+                        patient only ever sees a consultation, never a
+                        treatment session, until you've assessed them in
+                        person and opened a condition. Nothing clinical is
+                        ever visible to a patient online.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-ban" /></span>
+                    <div>
+                        <span class="oe-callout-label">Cancelling their own appointment</span>
+                        <p>They can cancel their own upcoming appointment,
+                        but only more than 24 hours out.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: HB Ink Studio Training",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Website/eLearning",
     "summary": "eLearning courses: patient records/clinical documentation and scheduling",
     "description": """
@@ -28,5 +28,10 @@ nothing to author by hand.
     "data": [
         "data/slide_channel_data.xml",
     ],
+    "assets": {
+        "web.assets_frontend": [
+            "paramedic_elearning/static/src/scss/course_content.scss",
+        ],
+    },
     "application": False,
 }
