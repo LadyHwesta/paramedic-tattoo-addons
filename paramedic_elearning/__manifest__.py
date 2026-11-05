@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: HB Ink Studio Training",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.2.0",
     "category": "Website/eLearning",
     "summary": "eLearning courses: patient records/clinical documentation and scheduling",
     "description": """

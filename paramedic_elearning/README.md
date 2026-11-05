@@ -14,6 +14,8 @@ Odoo's **eLearning** app - nothing to author by hand.
 
 Each course ends with a 4-question quiz.
 
+Screenshots in `static/img/` come from a local test database with sample data.
+
 ## Access
 
 Both courses are gated (`visibility="members"`, `enroll="invite"`);
