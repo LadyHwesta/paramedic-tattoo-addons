@@ -77,6 +77,13 @@
                         fill in their safety history at the consultation.</p>
                     </div>
                 </div>
+                <div class="oe-diagram">
+                    <img src="/paramedic_elearning/static/img/patient_form.png" alt="A patient's Patient tab with patient number, referral, safety history and consent sections" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the Patient tab on a sample patient.
+                    </p>
+                </div>
             </div>
         </field>
     </record>
@@ -125,6 +132,13 @@
                         Tests, Sessions - are where the rest of this
                         course's work happens.</p>
                     </div>
+                </div>
+                <div class="oe-diagram">
+                    <img src="/paramedic_elearning/static/img/condition_form.png" alt="A condition form with status steps and the Consents, Patch Tests and Sessions tabs" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        a condition, with the three tabs the rest of this course uses.
+                    </p>
                 </div>
             </div>
         </field>
@@ -515,6 +529,13 @@
                         its own sake.</p>
                     </div>
                 </div>
+                <div class="oe-diagram">
+                    <img src="/paramedic_elearning/static/img/service_form.png" alt="A service form with duration, buffer, Bookable Online and the safety gates" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        a service and its gates.
+                    </p>
+                </div>
             </div>
         </field>
     </record>
@@ -570,6 +591,13 @@
                         Complete creates the linked treatment-session
                         record for you, pre-filled and ready for clinical
                         detail.
+                    </p>
+                </div>
+                <div class="oe-diagram">
+                    <img src="/paramedic_elearning/static/img/appointment_new.png" alt="A new appointment form with patient, condition, service and practitioner fields" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        a new appointment.
                     </p>
                 </div>
             </div>

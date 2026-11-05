@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+import re
+
 from odoo.tests import TransactionCase, tagged
+from odoo.tools import file_path
 
 
 @tagged("post_install", "-at_install")
@@ -42,3 +45,12 @@ class TestParamedicElearning(TransactionCase):
 
     def test_courses_are_distinct(self):
         self.assertNotEqual(self.clinical, self.scheduling)
+
+    def test_screenshots_exist(self):
+        found = []
+        for channel in (self.clinical, self.scheduling):
+            for lesson in channel.slide_content_ids:
+                found += re.findall(r'src="/([^"]+\.png)"', lesson.html_content or "")
+        self.assertTrue(found)
+        for image in found:
+            self.assertTrue(file_path(image))
