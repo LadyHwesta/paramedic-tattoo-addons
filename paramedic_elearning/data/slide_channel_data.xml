@@ -20,6 +20,7 @@
 
     <record id="clinical_section_patients" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Patients and conditions</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -27,6 +28,7 @@
 
     <record id="clinical_lesson_patients" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Bringing on a patient</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
@@ -90,6 +92,7 @@
 
     <record id="clinical_lesson_conditions" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">The condition record</field>
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
@@ -146,6 +149,7 @@
 
     <record id="clinical_section_safety" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Consent &amp; patch testing</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -153,6 +157,7 @@
 
     <record id="clinical_lesson_consent" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Informed consent</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -194,6 +199,7 @@
 
     <record id="clinical_lesson_patch" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Patch testing</field>
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
@@ -241,6 +247,7 @@
 
     <record id="clinical_section_sessions" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Documenting a session</field>
         <field name="is_category" eval="True" />
         <field name="sequence">30</field>
@@ -248,6 +255,7 @@
 
     <record id="clinical_lesson_sessions" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Documenting a treatment session</field>
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
@@ -290,6 +298,7 @@
 
     <record id="clinical_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_clinical" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">90</field>
@@ -434,6 +443,7 @@
 
     <record id="scheduling_section_setup" model="slide.slide">
         <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
         <field name="name">One-time setup</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -441,6 +451,7 @@
 
     <record id="scheduling_lesson_practitioner" model="slide.slide">
         <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
         <field name="name">Adding yourself as a practitioner</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
@@ -486,6 +497,7 @@
 
     <record id="scheduling_lesson_services" model="slide.slide">
         <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
         <field name="name">Adding your services, and the gates that protect a real session</field>
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
@@ -542,6 +554,7 @@
 
     <record id="scheduling_section_booking" model="slide.slide">
         <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
         <field name="name">Booking appointments</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -549,6 +562,7 @@
 
     <record id="scheduling_lesson_booking" model="slide.slide">
         <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
         <field name="name">Booking one yourself, and confirming a request</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -606,6 +620,7 @@
 
     <record id="scheduling_lesson_portal" model="slide.slide">
         <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
         <field name="name">The patient's own online booking</field>
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
@@ -662,6 +677,7 @@
 
     <record id="scheduling_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">90</field>
