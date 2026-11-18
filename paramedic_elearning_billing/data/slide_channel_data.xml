@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Built by paramedic_elearning_billing/tools/build_course_data.py: edit there and rebuild. -->
+<odoo noupdate="1">
+
+    <record id="channel_billing" model="slide.channel">
+        <field name="name">Billing Patients</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html"><p>Price your services, invoice each visit in one click, take payment at the desk, and see who still owes.</p></field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('account.group_account_invoice')])]" />
+    </record>
+    <record id="channel_billing_s1" model="slide.slide">
+        <field name="channel_id" ref="channel_billing" />
+        <field name="is_published" eval="True" />
+        <field name="name">Prices and invoices</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+    <record id="channel_billing_s1_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_billing" />
+        <field name="is_published" eval="True" />
+        <field name="name">Pricing your services</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>Each service has a <strong>Price</strong>. Set it in <span class="oe-path">Paramedical Tattoo › Configuration › Services</span>: the first time you give a service a price, it gets a product of its own (<strong>Billed As</strong>) that its invoices use.</p><div class="oe-diagram"><img src="/paramedic_elearning_billing/static/img/service_price.png" alt="A service with its price" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>an areola restoration session at $450.</p></div><p>Change the price on the service whenever your fees change; invoices already sent keep the price they were made with.</p><div class="oe-callout oe-callout-warning"><span class="oe-callout-icon"><i class="fa fa-percent" /></span><div><span class="oe-callout-label">Check the tax</span><p>A new service takes your company's default sales tax. If your services aren't taxable, open the product from <strong>Billed As</strong> and clear its <strong>Sales Taxes</strong>. Ask your accountant if you're not sure.</p></div></div></div></field>
+    </record>
+    <record id="channel_billing_s1_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_billing" />
+        <field name="is_published" eval="True" />
+        <field name="name">Invoicing a visit</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>When the visit is done, mark the appointment <span class="oe-path">Complete</span>. A <strong>Create Invoice</strong> button appears.</p><div class="oe-diagram"><img src="/paramedic_elearning_billing/static/img/appointment_invoice.png" alt="A completed appointment with a Create Invoice button" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a completed appointment, ready to invoice.</p></div><p>It makes the patient's invoice for that service, with the visit's date on the line, and opens it. Add anything else from the visit, such as aftercare products, then <span class="oe-path">Confirm</span>.</p><div class="oe-diagram"><img src="/paramedic_elearning_billing/static/img/invoice_draft.png" alt="A draft invoice for the session" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>the draft invoice: the patient, the session and its price.</p></div><p>To bill several visits at once, tick them in the appointments list and click <strong>Create Invoices</strong>: each gets its own invoice.</p></div></field>
+    </record>
+    <record id="channel_billing_s2" model="slide.slide">
+        <field name="channel_id" ref="channel_billing" />
+        <field name="is_published" eval="True" />
+        <field name="name">Getting paid</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">22</field>
+    </record>
+    <record id="channel_billing_s2_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_billing" />
+        <field name="is_published" eval="True" />
+        <field name="name">Taking payment at the desk</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">23</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>On a confirmed invoice, <span class="oe-path">Pay</span> records a payment: pick the journal (Bank for a card or check, Cash for cash), check the amount and date, and <span class="oe-path">Create Payment</span>. The invoice and its appointment show <strong>Paid</strong>.</p><div class="oe-diagram"><img src="/paramedic_elearning_billing/static/img/register_payment.png" alt="The Pay dialog on an invoice" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>recording a $321.75 payment.</p></div><p>To email the invoice instead, use <span class="oe-path">Send</span>: the patient gets a link to view it and, if you take card payments online, to pay it.</p></div></field>
+    </record>
+    <record id="channel_billing_s2_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_billing" />
+        <field name="is_published" eval="True" />
+        <field name="name">Who still owes, and what's not billed</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">24</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>The appointments list has a <strong>Payment</strong> column: paid, not paid or partly paid. The <strong>To Invoice</strong> filter lists completed visits that haven't been billed yet.</p><div class="oe-diagram"><img src="/paramedic_elearning_billing/static/img/appointments_billing.png" alt="The appointments list with a Payment column" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a paid visit, two still owed, and a consultation not yet billed.</p></div><p>Overdue invoices are chased by email automatically (<span class="oe-path">Accounting › Configuration › Payment Reminders</span>). The bank, reconciliation and reports are in the course <strong>Getting Paid and Keeping the Books</strong>.</p><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-info-circle" /></span><div><span class="oe-callout-label">Insurance</span><p>Invoices go to the patient. The insurance payer and member ID on the patient's record are for your reference; insurance claims aren't filed from here.</p></div></div></div></field>
+    </record>
+    <record id="channel_billing_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_billing" />
+        <field name="is_published" eval="True" />
+        <field name="name">Check what you've learned</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">74</field>
+    </record>
+    <record id="channel_billing_q1" model="slide.question">
+        <field name="slide_id" ref="channel_billing_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">When does an appointment get a Create Invoice button?</field>
+    </record>
+    <record id="channel_billing_q1_a1" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Once it's marked Complete</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_billing_q1_a2" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">As soon as it's booked</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q1_a3" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">When the patient pays</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q1_a4" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">Never, invoices are typed by hand</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q2" model="slide.question">
+        <field name="slide_id" ref="channel_billing_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">You raise the price of a scar camouflage session. What happens to invoices already sent?</field>
+    </record>
+    <record id="channel_billing_q2_a1" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">They keep the price they were made with</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_billing_q2_a2" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">They change to the new price</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q2_a3" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">They're cancelled</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q2_a4" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">They're sent again</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q3" model="slide.question">
+        <field name="slide_id" ref="channel_billing_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">A patient pays cash at the desk. How do you record it?</field>
+    </record>
+    <record id="channel_billing_q3_a1" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Pay on the invoice, with the Cash journal</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_billing_q3_a2" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">Mark the appointment Completed</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q3_a3" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">Delete the invoice</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q3_a4" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Nothing, cash isn't recorded</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q4" model="slide.question">
+        <field name="slide_id" ref="channel_billing_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Where do you find visits that haven't been billed yet?</field>
+    </record>
+    <record id="channel_billing_q4_a1" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">The To Invoice filter on the appointments list</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_billing_q4_a2" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">The patient's conditions</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q4_a3" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">Payment Reminders</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_billing_q4_a4" model="slide.answer">
+        <field name="question_id" ref="channel_billing_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">The services list</field>
+        <field name="is_correct" eval="False" />
+    </record>
+</odoo>
