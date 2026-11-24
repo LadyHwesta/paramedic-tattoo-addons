@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Built by paramedic_elearning_patient_portal/tools/build_course_data.py: edit there and rebuild. -->
+<odoo noupdate="1">
+
+    <record id="channel_patient_portal" model="slide.channel">
+        <field name="name">Notes and Photo Permissions</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html"><p>Write notes that stay internal or that your patient sees, share photos with them, and know which photos you may use in marketing.</p></field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('paramedic_base.group_paramedic_staff')])]" />
+    </record>
+    <record id="channel_patient_portal_s1" model="slide.slide">
+        <field name="channel_id" ref="channel_patient_portal" />
+        <field name="is_published" eval="True" />
+        <field name="name">Clinical notes</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+    <record id="channel_patient_portal_s1_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_patient_portal" />
+        <field name="is_published" eval="True" />
+        <field name="name">Internal or shared with the patient</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>Write a note from a session's <strong>Notes</strong> tab, the <strong>Notes</strong> button on the patient, or <span class="oe-path">Paramedical Tattoo › Clinical › Clinical Notes</span>. Give it a title, write the note, and choose who sees it at the top:</p><div class="oe-diagram"><div class="oe-flow"><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-lock" /></span>Internal: staff only (the default)</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-user" /></span>Shared with patient: in their portal</div></div></div><div class="oe-diagram"><img src="/paramedic_elearning_patient_portal/static/img/note_form.png" alt="A clinical note shared with the patient" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a two-week healing check, shared with the patient.</p></div><p>A shared note appears under <strong>My Records</strong> in the patient's portal. They get an email saying there's an update, with a link to sign in. The note itself never goes by email, because email isn't private.</p><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-comment-o" /></span><div><span class="oe-callout-label">Write shared notes for the patient</span><p>Plain words, as you'd say it to them: what you saw, and what they should do next. Keep your clinical shorthand and plans for an internal note.</p></div></div><div class="oe-callout oe-callout-warning"><span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span><div><span class="oe-callout-label">Shared means shared</span><p>Switching a note back to Internal hides it from the portal, but the patient may already have read it. Check before you share.</p></div></div></div></field>
+    </record>
+    <record id="channel_patient_portal_s2" model="slide.slide">
+        <field name="channel_id" ref="channel_patient_portal" />
+        <field name="is_published" eval="True" />
+        <field name="name">Photos and marketing permission</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">21</field>
+    </record>
+    <record id="channel_patient_portal_s2_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_patient_portal" />
+        <field name="is_published" eval="True" />
+        <field name="name">Sharing photos with the patient</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>Before and after photos stay staff-only until you share them. On the session, open the <strong>Sharing &amp; Marketing</strong> tab and tick <strong>Shared with Patient</strong> on each photo they should see.</p><div class="oe-diagram"><img src="/paramedic_elearning_patient_portal/static/img/my_records.png" alt="A patient's My Records page" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>what the patient sees: your shared update, and their shared photos.</p></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-key" /></span><div><span class="oe-callout-label">The patient needs a portal login</span><p>If they don't have one yet, open their contact and use <strong>Grant portal access</strong> (in the gear menu). They get an email to set their password.</p></div></div></div></field>
+    </record>
+    <record id="channel_patient_portal_s2_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_patient_portal" />
+        <field name="is_published" eval="True" />
+        <field name="name">Permission to use a photo in marketing</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">23</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>A photo may be used on your website, portfolio or social media only with the patient's permission, and every photo shows whether you have it:</p><div class="oe-diagram"><div class="oe-flow"><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-user" /></span>The patient ticks it in their portal</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-file-text-o" /></span>Or you attach their signed photo release</div></div></div><div class="oe-diagram"><img src="/paramedic_elearning_patient_portal/static/img/photos.png" alt="Photos with their marketing permission" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>the green badge says who gave permission, and since when.</p></div><p>Nobody else can tick it: staff record permission only from a signed <strong>Photo Release</strong> consent, and one release goes a long way:</p><div class="oe-diagram"><div class="oe-flow"><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-check-square-o" /></span>Covers All Photos ticked: every photo, now and later</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-files-o" /></span>Or select photos, then Attach Signed Release</div></div></div><p>Tick <strong>Covers All Photos</strong> on the release when it covers everything from their treatment: each new photo is covered as you add it. For a release that covers only some photos, select them in <span class="oe-path">Paramedical Tattoo › Clinical › Photos</span>, then <span class="oe-path">Actions › Attach Signed Release</span>. To find photos you may use, filter <strong>OK for Marketing</strong>.</p><div class="oe-callout oe-callout-warning"><span class="oe-callout-icon"><i class="fa fa-undo" /></span><div><span class="oe-callout-label">When a patient withdraws it</span><p>The badge goes and the change is logged on the photo. A release doesn't override the patient: only they can allow that photo again. Stop using it, and take it down where you can. If the release itself is withdrawn, every photo it covered loses its permission.</p></div></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-info-circle" /></span><div><span class="oe-callout-label">The old checkbox</span><p>The patient's single "OK to use photos" checkbox is replaced by this permission per photo, so each one has its own proof.</p></div></div></div></field>
+    </record>
+    <record id="channel_patient_portal_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_patient_portal" />
+        <field name="is_published" eval="True" />
+        <field name="name">Check what you've learned</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">73</field>
+    </record>
+    <record id="channel_patient_portal_q1" model="slide.question">
+        <field name="slide_id" ref="channel_patient_portal_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">You write a note. Who can see it if you don't change anything?</field>
+    </record>
+    <record id="channel_patient_portal_q1_a1" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Only staff</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_patient_portal_q1_a2" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">The patient, in their portal</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q1_a3" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Everyone with the link</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q1_a4" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">Nobody until it's signed</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q2" model="slide.question">
+        <field name="slide_id" ref="channel_patient_portal_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">What does the patient's email say when you share a note?</field>
+    </record>
+    <record id="channel_patient_portal_q2_a1" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">That there's an update, with a link to sign in</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_patient_portal_q2_a2" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">The whole note</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q2_a3" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">The note's title and first line</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q2_a4" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Nothing: no email is sent</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q3" model="slide.question">
+        <field name="slide_id" ref="channel_patient_portal_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">Which photos does a patient see in their portal?</field>
+    </record>
+    <record id="channel_patient_portal_q3_a1" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Only the ones you tick Shared with Patient</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_patient_portal_q3_a2" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">All their photos</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q3_a3" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">Only after photos</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q3_a4" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">None: photos stay in the office</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q4" model="slide.question">
+        <field name="slide_id" ref="channel_patient_portal_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">A patient signed a release covering everything from their treatment. What do you do?</field>
+    </record>
+    <record id="channel_patient_portal_q4_a1" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Tick Covers All Photos on the release</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_patient_portal_q4_a2" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">Tick OK for Marketing on each photo</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q4_a3" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">Attach the release to each photo one by one, forever</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_patient_portal_q4_a4" model="slide.answer">
+        <field name="question_id" ref="channel_patient_portal_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">Nothing: staff can't record it</field>
+        <field name="is_correct" eval="False" />
+    </record>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_partner_form_patient_portal" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="paramedic_base.view_partner_form_paramedic" />
+        <field name="arch" type="xml">
+            <div name="patient_button_box" position="inside">
+                <button name="action_view_clinical_notes" type="object"
+                        class="oe_stat_button" icon="fa-file-text-o">
+                    <field name="clinical_note_count" widget="statinfo" string="Notes" />
+                </button>
+                <button name="action_view_patient_photos" type="object"
+                        class="oe_stat_button" icon="fa-camera">
+                    <field name="marketing_photo_count" widget="statinfo"
+                           string="OK for Marketing" />
+                </button>
+            </div>
+            <!-- Replaced by permission per photo, from the patient or a signed release. -->
+            <field name="photo_marketing_consent" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="photo_marketing_consent" position="after">
+                <div class="text-muted small" colspan="2">
+                    Marketing permission is per photo: see the Photos button.
+                </div>
+            </field>
+        </field>
+    </record>
+
+</odoo>

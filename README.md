@@ -25,13 +25,22 @@ equivalent.
   Records & Clinical Documentation* and *Scheduling & Booking*, each
   ending in a short quiz. Gated to staff (`paramedic_base.group_paramedic_staff`
   is auto-enrolled), nothing to author by hand.
+- `paramedic_patient_portal` — clinical notes marked **Internal** or
+  **Shared with patient**, photos shared with the patient, and permission to
+  use each photo in marketing, given by the patient in their portal (or by a
+  signed photo release) and shown on every photo. Adds **My Records** to the
+  portal: a patient sees only what's been shared with them.
+- `paramedic_elearning_patient_portal` — a short course on the above,
+  installed with it.
 
 ## A note on patient data
 
 This is health-adjacent data, handled accordingly regardless of which
 specific privacy law applies to a given practice: patient and treatment
-records are staff-only, changes are tracked, and photos are stored as
-ordinary private attachments (no third-party service, no public URL).
+records are staff-only unless a practitioner shares a note or photo with
+that patient (`paramedic_patient_portal`), changes are tracked, and photos are
+stored as ordinary private attachments (no third-party service, no public URL;
+a shared photo is served only to its own patient).
 None of that is a substitute for checking with your state's cosmetology /
 body-art board or a healthcare attorney about what recordkeeping and
 consent rules apply to your practice specifically — this repo doesn't

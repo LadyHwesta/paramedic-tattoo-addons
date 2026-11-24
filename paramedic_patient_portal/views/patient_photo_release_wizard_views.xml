@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="patient_photo_release_wizard_view_form" model="ir.ui.view">
+        <field name="name">patient.photo.release.wizard.form</field>
+        <field name="model">patient.photo.release.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p>Give the selected photos marketing permission from the patient's signed photo
+                release.</p>
+                <group>
+                    <field name="partner_id" />
+                    <field name="consent_id" options="{'no_create': True}" />
+                    <field name="photo_ids" widget="many2many_tags" readonly="1" />
+                </group>
+                <div class="alert alert-info" role="status" invisible="not skipped_count">
+                    <field name="skipped_count" class="oe_inline" /> of these the patient decided in
+                    their portal (allowed or withdrew); those stay as the patient chose.
+                </div>
+                <footer>
+                    <button name="action_attach" type="object" string="Attach Release"
+                            class="btn-primary" />
+                    <button string="Cancel" special="cancel" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_patient_photo_release_wizard" model="ir.actions.act_window">
+        <field name="name">Attach Signed Release</field>
+        <field name="res_model">patient.photo.release.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_patient_photo" />
+        <field name="binding_view_types">list,kanban</field>
+    </record>
+
+    <!-- On the release itself: covers all photos, and which ones it covers. -->
+    <record id="patient_consent_view_form_photos" model="ir.ui.view">
+        <field name="name">patient.consent.form.photos</field>
+        <field name="model">patient.consent</field>
+        <field name="inherit_id" ref="paramedic_base.patient_consent_view_form" />
+        <field name="arch" type="xml">
+            <field name="signed" position="after">
+                <field name="covers_all_photos" invisible="consent_type != 'photo_release'" />
+            </field>
+            <xpath expr="//sheet" position="inside">
+                <div class="text-muted small" invisible="consent_type != 'photo_release'">
+                    Ticked: every photo of this patient, now and later, may be used in marketing
+                    (except any they withdraw in their portal). Not ticked: attach it to chosen
+                    photos from Photos (select them, then Attach Signed Release).
+                </div>
+            </xpath>
+            <xpath expr="//sheet/*[1]" position="before">
+                <div class="oe_button_box" name="photo_release_box"
+                     invisible="consent_type != 'photo_release'">
+                    <button name="action_view_covered_photos" type="object"
+                            class="oe_stat_button" icon="fa-camera">
+                        <field name="photo_count" widget="statinfo" string="Photos" />
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
