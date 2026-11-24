@@ -32,6 +32,10 @@ equivalent.
   portal: a patient sees only what's been shared with them.
 - `paramedic_elearning_patient_portal` — a short course on the above,
   installed with it.
+- `paramedic_my_day` — the practice's day in My Day (`odoo-addons/my_day`):
+  today's appointments (a practitioner's own, or the whole book for staff who
+  don't practise), booking requests with Confirm, patch tests due to be read,
+  and patients due back with nothing booked. Installs itself with My Day.
 
 ## A note on patient data
 
