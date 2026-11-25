@@ -7,6 +7,7 @@
 
     <record id="channel_clinical" model="slide.channel">
         <field name="name">Patient Records &amp; Clinical Documentation</field>
+        <field name="image_1920" type="base64" file="paramedic_elearning/static/img/cover_clinical.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>From a patient's first visit through every session after -
@@ -430,6 +431,7 @@
 
     <record id="channel_scheduling" model="slide.channel">
         <field name="name">Scheduling &amp; Booking</field>
+        <field name="image_1920" type="base64" file="paramedic_elearning/static/img/cover_scheduling.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Setting up a practitioner and services, and booking

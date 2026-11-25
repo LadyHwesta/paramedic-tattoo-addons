@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Billing Patients",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "category": "Website/eLearning",
     "summary": "eLearning course: pricing services, invoicing visits, taking payment, who still owes",
     "description": """
