@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_patient_clinical_note_staff,patient.clinical.note staff,model_patient_clinical_note,paramedic_base.group_paramedic_staff,1,1,1,1
-access_patient_photo_staff,patient.photo staff,model_patient_photo,paramedic_base.group_paramedic_staff,1,1,1,1
-access_patient_photo_release_wizard_staff,patient.photo.release.wizard staff,model_patient_photo_release_wizard,paramedic_base.group_paramedic_staff,1,1,1,1

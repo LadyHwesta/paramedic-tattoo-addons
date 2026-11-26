@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_practice_root"
+              name="Practice"
+              groups="practice_base.group_practice_staff"
+              sequence="90" />
+
+    <menuitem id="menu_client"
+              name="Clients"
+              parent="menu_practice_root"
+              action="action_client"
+              sequence="10" />
+
+    <menuitem id="menu_practice_plan"
+              name="Treatment Plans"
+              parent="menu_practice_root"
+              action="action_practice_plan"
+              sequence="20" />
+
+    <menuitem id="menu_practice_session"
+              name="Treatment Sessions"
+              parent="menu_practice_root"
+              action="action_practice_session"
+              sequence="30" />
+
+    <menuitem id="menu_practice_clinical"
+              name="Records"
+              parent="menu_practice_root"
+              sequence="40" />
+
+    <menuitem id="menu_practice_test"
+              name="Pre-treatment Tests"
+              parent="menu_practice_clinical"
+              action="action_practice_test"
+              sequence="10" />
+
+    <menuitem id="menu_practice_consent"
+              name="Consents"
+              parent="menu_practice_clinical"
+              action="action_practice_consent"
+              sequence="20" />
+
+    <menuitem id="menu_practice_configuration"
+              name="Configuration"
+              parent="menu_practice_root"
+              sequence="100" />
+
+    <menuitem id="menu_practice_practitioner"
+              name="Practitioners"
+              parent="menu_practice_configuration"
+              action="action_practice_practitioner"
+              sequence="10" />
+
+    <menuitem id="menu_practice_plan_type"
+              name="Treatment Types"
+              parent="menu_practice_configuration"
+              action="action_practice_plan_type"
+              sequence="20" />
+
+    <menuitem id="menu_practice_test_type"
+              name="Pre-treatment Test Types"
+              parent="menu_practice_configuration"
+              action="action_practice_test_type"
+              sequence="30" />
+
+    <menuitem id="menu_practice_health_flag"
+              name="Health Flags"
+              parent="menu_practice_configuration"
+              action="action_practice_health_flag"
+              sequence="40" />
+
+    <menuitem id="menu_practice_consent_form"
+              name="Consent Forms"
+              parent="menu_practice_configuration"
+              action="action_practice_consent_form"
+              sequence="50" />
+
+</odoo>

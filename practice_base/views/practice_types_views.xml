@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Treatment types -->
+    <record id="practice_plan_type_view_list" model="ir.ui.view">
+        <field name="model">practice.plan.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="description" />
+                <field name="active" column_invisible="1" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_practice_plan_type" model="ir.actions.act_window">
+        <field name="name">Treatment Types</field>
+        <field name="res_model">practice.plan.type</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add what your practice treats</p>
+            <p>For example "Deep tissue massage for back pain", "Sleep support" or
+               "Strength program". Every treatment plan starts from one.</p>
+        </field>
+    </record>
+
+    <!-- Pre-treatment test types -->
+    <record id="practice_test_type_view_list" model="ir.ui.view">
+        <field name="model">practice.test.type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="read_after_days" />
+                <field name="active" column_invisible="1" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_practice_test_type" model="ir.actions.act_window">
+        <field name="name">Pre-treatment Test Types</field>
+        <field name="res_model">practice.test.type</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add the checks you do before treating</p>
+            <p>A skin patch test for an oil or remedy, a fitness assessment... and how
+               many days until its result is read.</p>
+        </field>
+    </record>
+
+    <!-- Health flags -->
+    <record id="practice_health_flag_view_list" model="ir.ui.view">
+        <field name="model">practice.health.flag</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="description" />
+                <field name="color" widget="color_picker" />
+                <field name="active" column_invisible="1" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_practice_health_flag" model="ir.actions.act_window">
+        <field name="name">Health Flags</field>
+        <field name="res_model">practice.health.flag</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add what you need to know before treating</p>
+            <p>For example "Pregnant", "Blood thinners" or "Recent injury". They show as
+               tags on the client.</p>
+        </field>
+    </record>
+
+    <!-- Consent forms -->
+    <record id="practice_consent_form_view_list" model="ir.ui.view">
+        <field name="model">practice.consent.form</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="kind" />
+                <field name="active" column_invisible="1" />
+            </list>
+        </field>
+    </record>
+
+    <record id="practice_consent_form_view_form" model="ir.ui.view">
+        <field name="model">practice.consent.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active" />
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Massage Treatment Consent" /></h1>
+                    </div>
+                    <group>
+                        <field name="kind" />
+                        <field name="active" invisible="1" />
+                    </group>
+                    <field name="body" placeholder="The wording the client agrees to..." />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_practice_consent_form" model="ir.actions.act_window">
+        <field name="name">Consent Forms</field>
+        <field name="res_model">practice.consent.form</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

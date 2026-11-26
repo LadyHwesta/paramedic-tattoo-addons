@@ -42,13 +42,13 @@ actively testing.
 `addons_path` automatically includes every folder at the root of this
 repo, so a new module just needs to exist there - nothing to edit.
 
-First run creates the `paramedic_test` database with no modules
+First run creates the `practice_test_db` database with no modules
 installed yet. Install what you want to test:
 
 ```
 source .venv/bin/activate
 python3 ~/dev/odoo-19/odoo-bin --addons-path="$HOME/dev/odoo-19/addons,$HOME/dev/odoo-19/odoo/addons,$(cd .. && pwd)" \
-    --db_host="$(pwd)/.sockets" --db_port=5433 -d paramedic_test \
+    --db_host="$(pwd)/.sockets" --db_port=5433 -d practice_test_db \
     -i base,calendar,caldav_calendar --stop-after-init
 ```
 
@@ -74,5 +74,5 @@ methods, checking results) without needing the web UI:
 ```
 source .venv/bin/activate
 python3 ~/dev/odoo-19/odoo-bin shell --addons-path="..." --db_host="$(pwd)/.sockets" --db_port=5433 \
-    -d paramedic_test --shell-interface=python < your_script.py
+    -d practice_test_db --shell-interface=python < your_script.py
 ```

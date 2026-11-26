@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Reviews have comments off: even when a website allows comments on its
+         blogs, a review post never shows the comment box. -->
+    <template id="opt_blog_post_comment_no_reviews" inherit_id="website_blog.opt_blog_post_comment">
+        <xpath expr="//div[@id='o_wblog_post_comments']" position="attributes">
+            <attribute name="t-if">not blog_post.blog_id.is_practice_review_blog</attribute>
+        </xpath>
+    </template>
+</odoo>

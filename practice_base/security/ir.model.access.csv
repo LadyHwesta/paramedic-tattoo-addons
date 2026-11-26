@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_practice_practitioner,practice.practitioner staff,model_practice_practitioner,group_practice_staff,1,1,1,1
+access_practice_plan,practice.plan staff,model_practice_plan,group_practice_staff,1,1,1,1
+access_practice_consent,practice.consent staff,model_practice_consent,group_practice_staff,1,1,1,1
+access_practice_test,practice.test staff,model_practice_test,group_practice_staff,1,1,1,1
+access_practice_session,practice.session staff,model_practice_session,group_practice_staff,1,1,1,1
+access_practice_plan_type,practice.plan.type staff,model_practice_plan_type,group_practice_staff,1,1,1,1
+access_practice_test_type,practice.test.type staff,model_practice_test_type,group_practice_staff,1,1,1,1
+access_practice_health_flag,practice.health.flag staff,model_practice_health_flag,group_practice_staff,1,1,1,1
+access_practice_consent_form,practice.consent.form staff,model_practice_consent_form,group_practice_staff,1,1,1,1

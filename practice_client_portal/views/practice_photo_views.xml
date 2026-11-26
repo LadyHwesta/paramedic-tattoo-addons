@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="practice_photo_view_kanban" model="ir.ui.view">
+        <field name="name">practice.photo.kanban</field>
+        <field name="model">practice.photo</field>
+        <field name="arch" type="xml">
+            <kanban create="0">
+                <field name="attachment_id" />
+                <field name="marketing_ok" />
+                <field name="shared_with_client" />
+                <templates>
+                    <t t-name="card">
+                        <img t-att-src="'/web/image/ir.attachment/' + record.attachment_id.raw_value + '/datas'"
+                             alt="Client photo" class="img-fluid mb-2"
+                             style="max-height: 180px; object-fit: cover;" />
+                        <field name="partner_id" class="fw-bold" />
+                        <div class="text-muted small"><field name="kind" /> · <field name="date" /></div>
+                        <div class="mt-1">
+                            <span t-if="record.marketing_ok.raw_value" class="badge text-bg-success">
+                                <field name="marketing_label" />
+                            </span>
+                            <span t-else="" class="badge text-bg-light">No marketing permission</span>
+                            <span t-if="record.shared_with_client.raw_value"
+                                  class="badge text-bg-info ms-1">Shared</span>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="practice_photo_view_list" model="ir.ui.view">
+        <field name="name">practice.photo.list</field>
+        <field name="model">practice.photo</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" create="0" delete="0">
+                <field name="date" readonly="1" />
+                <field name="partner_id" readonly="1" />
+                <field name="kind" readonly="1" />
+                <field name="name" readonly="1" />
+                <field name="shared_with_client" />
+                <field name="marketing_label" widget="badge"
+                       decoration-success="marketing_ok" />
+                <field name="marketing_ok" column_invisible="1" />
+            </list>
+        </field>
+    </record>
+
+    <record id="practice_photo_view_form" model="ir.ui.view">
+        <field name="name">practice.photo.form</field>
+        <field name="model">practice.photo</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <sheet>
+                    <field name="attachment_id" invisible="1" />
+                    <div class="alert alert-warning" role="status" invisible="not withdrawn_by_client">
+                        The client withdrew permission for this photo in their portal. Only they
+                        can allow it again; a signed release doesn't override that.
+                    </div>
+                    <field name="withdrawn_by_client" invisible="1" />
+                    <field name="image" widget="image" readonly="1" class="mb-3"
+                           options="{'size': [0, 320]}" />
+                    <group>
+                        <group string="Photo">
+                            <field name="partner_id" readonly="1" />
+                            <field name="session_id" readonly="1" />
+                            <field name="kind" readonly="1" />
+                            <field name="shared_with_client" />
+                        </group>
+                        <group string="Marketing">
+                            <field name="marketing_label" readonly="1" />
+                            <field name="marketing_ok" invisible="1" />
+                            <field name="marketing_source" readonly="1" invisible="not marketing_ok" />
+                            <field name="marketing_date" readonly="1" invisible="not marketing_ok" />
+                            <field name="marketing_consent_id"
+                                   invisible="marketing_source == 'client' or withdrawn_by_client"
+                                   options="{'no_create': True}" />
+                        </group>
+                    </group>
+                    <p class="text-muted small">
+                        Permission comes from the client, in their portal (only for photos shared
+                        with them), or from their signed photo release attached above. Every grant
+                        and withdrawal is logged below.
+                    </p>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="practice_photo_view_search" model="ir.ui.view">
+        <field name="name">practice.photo.search</field>
+        <field name="model">practice.photo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <filter name="marketing_ok" string="OK for Marketing" domain="[('marketing_ok', '=', True)]" />
+                <filter name="shared" string="Shared with Client" domain="[('shared_with_client', '=', True)]" />
+                <separator />
+                <filter name="before" string="Before" domain="[('kind', '=', 'before')]" />
+                <filter name="after" string="After" domain="[('kind', '=', 'after')]" />
+                <group>
+                    <filter name="group_client" string="Client" context="{'group_by': 'partner_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_practice_photo" model="ir.actions.act_window">
+        <field name="name">Photos</field>
+        <field name="res_model">practice.photo</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No photos yet</p>
+            <p>Photos added to a treatment session appear here. Tick "Shared with Client"
+            to show one in the client's portal; filter "OK for Marketing" to find the ones
+            you may use.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_practice_photo"
+              name="Photos"
+              parent="practice_base.menu_practice_clinical"
+              action="action_practice_photo"
+              sequence="30" />
+
+</odoo>

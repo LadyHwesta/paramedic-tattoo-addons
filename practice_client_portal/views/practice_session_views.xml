@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="practice_session_view_form_portal" model="ir.ui.view">
+        <field name="name">practice.session.form.portal</field>
+        <field name="model">practice.session</field>
+        <field name="inherit_id" ref="practice_base.practice_session_view_form" />
+        <field name="arch" type="xml">
+            <page name="after_photos" position="after">
+                <page string="Sharing &amp; Marketing" name="photo_sharing">
+                    <p class="text-muted">Tick a photo to show it in the client's portal, where
+                    they can allow its use in marketing.</p>
+                    <field name="photo_ids" context="{'tree_view_ref': 'practice_client_portal.practice_photo_view_list'}" />
+                </page>
+                <page string="Notes" name="clinical_notes">
+                    <field name="clinical_note_ids"
+                           context="{'default_partner_id': partner_id, 'default_session_id': id, 'default_plan_id': plan_id}">
+                        <list>
+                            <field name="date" />
+                            <field name="title" />
+                            <field name="author_id" />
+                            <field name="visibility" widget="badge"
+                                   decoration-muted="visibility == 'internal'"
+                                   decoration-info="visibility == 'client'" />
+                        </list>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

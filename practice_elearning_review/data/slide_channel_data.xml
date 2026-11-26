@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Built by practice_elearning_review/tools/build_course_data.py: edit there and rebuild. -->
+<odoo noupdate="1">
+
+    <record id="channel_reviews" model="slide.channel">
+        <field name="name">Client Reviews</field>
+        <field name="image_1920" type="base64" file="practice_elearning_review/static/img/cover_reviews.png" />
+        <field name="channel_type">training</field>
+        <field name="description" type="html"><p>How clients review their practitioner, checking each review before it goes online, and what clients stay in charge of.</p></field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('practice_base.group_practice_staff')])]" />
+    </record>
+    <record id="channel_reviews_s1" model="slide.slide">
+        <field name="channel_id" ref="channel_reviews" />
+        <field name="is_published" eval="True" />
+        <field name="name">From visit to website</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+    <record id="channel_reviews_s1_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_reviews" />
+        <field name="is_published" eval="True" />
+        <field name="name">How a client writes a review</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>After a <strong>completed</strong> appointment, the client can review the practitioner who treated them from <strong>My Reviews</strong> in their portal: 1 to 5 stars, a title, a few words, and how their name is shown (first name and last initial, unless they change it).</p><p>They can add any of their own photos you've shared with them, ticking that those photos may be shown with the review.</p><div class="oe-diagram"><img src="/practice_elearning_review/static/img/portal_review_form.png" alt="The review form in the client portal" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a client reviewing their practitioner, with one of their photos.</p></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-user-check" /></span><div><span class="oe-callout-label">Only real clients</span><p>A review needs a completed visit with that practitioner, and a client has one review per practitioner at a time.</p></div></div></div></field>
+    </record>
+    <record id="channel_reviews_s1_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_reviews" />
+        <field name="is_published" eval="True" />
+        <field name="name">Checking and publishing</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>Every review waits in <span class="oe-path">Practice › Reviews</span>, and whoever checks reviews gets a to-do. Set who that is in <span class="oe-path">Settings › Practice Appointments › Reviews checked by</span>.</p><div class="oe-diagram"><img src="/practice_elearning_review/static/img/review_backend.png" alt="A review waiting to be checked" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a review to check, with the photo the client chose.</p></div><ul><li><strong>Publish</strong> puts it on the <strong>Client Reviews</strong> blog, tagged with the practitioner, with copies of the chosen photos. Comments are off on reviews.</li><li><strong>Don't Publish</strong> keeps it off the website. Add a short note if you like: the client sees it in their portal.</li></ul><div class="oe-diagram"><img src="/practice_elearning_review/static/img/review_published.png" alt="A published review on the blog" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>the published review.</p></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-undo" /></span><div><span class="oe-callout-label">The client stays in charge</span><p>A client can withdraw their review at any time: the post and its photo copies come down. The original photos stay private in their records.</p></div></div></div></field>
+    </record>
+    <record id="channel_reviews_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_reviews" />
+        <field name="is_published" eval="True" />
+        <field name="name">Check what you've learned</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">62</field>
+    </record>
+    <record id="channel_reviews_q1" model="slide.question">
+        <field name="slide_id" ref="channel_reviews_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">Who can review a practitioner?</field>
+    </record>
+    <record id="channel_reviews_q1_a1" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">A client after a completed visit with them</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_reviews_q1_a2" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">Anyone visiting the website</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q1_a3" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Any portal user</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q1_a4" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only staff</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q2" model="slide.question">
+        <field name="slide_id" ref="channel_reviews_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">A client sends a review. When does it appear on the website?</field>
+    </record>
+    <record id="channel_reviews_q2_a1" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Straight away</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q2_a2" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">Once someone clicks Publish</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_reviews_q2_a3" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">After 24 hours</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q2_a4" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Never</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q3" model="slide.question">
+        <field name="slide_id" ref="channel_reviews_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">Can website visitors comment on a published review?</field>
+    </record>
+    <record id="channel_reviews_q3_a1" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">No, comments are off on reviews</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_reviews_q3_a2" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">Yes, like any blog post</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q3_a3" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">Only signed-in clients</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q3_a4" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only the practitioner</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q4" model="slide.question">
+        <field name="slide_id" ref="channel_reviews_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">A client withdraws a published review. What happens to the photos they chose?</field>
+    </record>
+    <record id="channel_reviews_q4_a1" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">The public copies come down; the originals stay private in their records</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_reviews_q4_a2" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">They stay on the blog</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q4_a3" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">They're deleted from the client's records</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_reviews_q4_a4" model="slide.answer">
+        <field name="question_id" ref="channel_reviews_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">They're shared on the practice's other pages</field>
+        <field name="is_correct" eval="False" />
+    </record>
+</odoo>

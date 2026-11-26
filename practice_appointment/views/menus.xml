@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_practice_appointment"
+              name="Appointments"
+              parent="practice_base.menu_practice_root"
+              action="action_practice_appointment"
+              sequence="5" />
+
+    <menuitem id="menu_practice_appointment_requested"
+              name="Needs Confirmation"
+              parent="practice_base.menu_practice_clinical"
+              action="action_practice_appointment_requested"
+              sequence="5" />
+
+    <menuitem id="menu_practice_service"
+              name="Services"
+              parent="practice_base.menu_practice_configuration"
+              action="action_practice_service"
+              sequence="5" />
+
+</odoo>

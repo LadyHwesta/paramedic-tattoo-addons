@@ -11,7 +11,7 @@ set -uo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$DIR/.." && pwd)"
 ODOO_SRC="${ODOO_SRC:-$HOME/dev/odoo-19}"
-DB_NAME="${DB_NAME:-paramedic_test}"
+DB_NAME="${DB_NAME:-practice_test_db}"
 HTTP_PORT="${HTTP_PORT:-8069}"
 
 if [ ! -d "$DIR/.venv" ] || [ ! -d "$DIR/.pgdata" ]; then

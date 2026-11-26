@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="seq_client_ref" model="ir.sequence">
+        <field name="name">Client Number</field>
+        <field name="code">practice.client.ref</field>
+        <field name="prefix">CL</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False" />
+    </record>
+</odoo>

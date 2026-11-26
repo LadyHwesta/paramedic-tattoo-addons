@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- Deliberately says nothing about the note: email isn't private. -->
+    <record id="mail_template_note_shared" model="mail.template">
+        <field name="name">Note Shared with Client</field>
+        <field name="model_id" ref="model_practice_note" />
+        <field name="subject">A new update from your provider</field>
+        <field name="email_to">{{ object.partner_id.email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Hi <t t-out="object.partner_id.name" />,</p>
+                <p>Your provider has shared an update in your records.</p>
+                <p><a t-att-href="object.get_base_url() + '/my/records'">Sign in to read it</a></p>
+                <p>For your privacy, we don't include the update itself in this email.</p>
+            </div>
+        </field>
+    </record>
+
+</odoo>

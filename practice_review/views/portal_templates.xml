@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="portal_my_home_reviews" name="Portal home: My Reviews"
+              customize_show="True" inherit_id="portal.portal_my_home" priority="22">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_service_category_enable" t-value="True" />
+        </xpath>
+        <div id="portal_service_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/web/static/img/smiling_face.svg'" />
+                <t t-set="title">My Reviews</t>
+                <t t-set="url" t-value="'/my/reviews'" />
+                <t t-set="text">Tell others about your visit</t>
+                <t t-set="placeholder_count" t-value="'practice_review_count'" />
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_my_reviews" name="My Reviews">
+        <t t-call="portal.portal_layout">
+            <h3 class="mb-4">My Reviews</h3>
+            <div t-if="sent" class="alert alert-success" role="status">
+                Thank you! Your review is with the practice, who check every review before it
+                goes on the website.
+            </div>
+            <div t-if="withdrawn" class="alert alert-info" role="status">Your review is withdrawn.</div>
+
+            <t t-if="practitioners">
+                <h5>Review your practitioner</h5>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <a t-foreach="practitioners" t-as="practitioner"
+                       t-attf-href="/my/reviews/new/#{practitioner.id}" class="btn btn-outline-primary">
+                        <i class="fa fa-star-o me-1" /> Review <t t-out="practitioner.display_name" />
+                    </a>
+                </div>
+            </t>
+
+            <h5>Your reviews</h5>
+            <p t-if="not reviews" class="text-muted">
+                You haven't written a review yet. After a visit, you can review the practitioner
+                who treated you here.
+            </p>
+            <div t-foreach="reviews" t-as="review" class="border rounded p-3 mb-3">
+                <div class="d-flex justify-content-between align-items-start gap-2">
+                    <div>
+                        <strong t-out="review.title" />
+                        <div class="text-warning" t-att-aria-label="'%s out of 5 stars' % review.rating"
+                             t-out="review.stars" />
+                        <div class="small text-muted">About <t t-out="review.practitioner_id.display_name" /></div>
+                    </div>
+                    <span t-attf-class="badge #{'text-bg-success' if review.state == 'published' else 'text-bg-secondary'}"
+                          t-out="dict(review._fields['state'].selection)[review.state]" />
+                </div>
+                <p class="mt-2 mb-2" style="white-space: pre-line;" t-out="review.body" />
+                <p t-if="review.state == 'rejected' and review.reject_reason" class="small text-muted mb-2">
+                    From the practice: <t t-out="review.reject_reason" />
+                </p>
+                <div class="d-flex gap-2">
+                    <a t-if="review.state == 'published' and review.blog_post_id"
+                       t-att-href="review.blog_post_id.website_url" class="btn btn-sm btn-outline-secondary">See it online</a>
+                    <form t-if="review.state in ('submitted', 'published')" method="post"
+                          t-attf-action="/my/reviews/#{review.id}/withdraw">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Withdraw</button>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_review_form" name="Write a Review">
+        <t t-call="portal.portal_layout">
+            <h3 class="mb-1">Review <t t-out="practitioner.display_name" /></h3>
+            <p class="text-muted">The practice reads every review before it appears on their website.
+                Comments are off, so nobody can reply to it there.</p>
+            <div t-if="error" class="alert alert-danger" role="alert" t-out="error" />
+            <form method="post" t-attf-action="/my/reviews/new/#{practitioner.id}">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <fieldset class="mb-3">
+                    <legend class="form-label fs-6 fw-bold">Your rating</legend>
+                    <div class="d-flex flex-wrap gap-3">
+                        <t t-foreach="[5, 4, 3, 2, 1]" t-as="n">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="rating" required="required"
+                                       t-att-id="'rating_%s' % n" t-att-value="n"
+                                       t-att-checked="str(post.get('rating')) == str(n) or None" />
+                                <label class="form-check-label text-warning" t-att-for="'rating_%s' % n">
+                                    <t t-out="'★' * n + '☆' * (5 - n)" /><span class="visually-hidden"> <t t-out="n" /> stars</span>
+                                </label>
+                            </div>
+                        </t>
+                    </div>
+                </fieldset>
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="review_title">Title</label>
+                    <input id="review_title" name="title" class="form-control" maxlength="120" required="required"
+                           t-att-value="post.get('title')" placeholder="In a few words" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="review_body">Your review</label>
+                    <textarea id="review_body" name="body" class="form-control" rows="6" maxlength="4000"
+                              required="required"><t t-out="post.get('body') or ''" /></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold" for="review_shown_as">Show my name as</label>
+                    <input id="review_shown_as" name="shown_as" class="form-control" maxlength="60"
+                           t-att-value="post.get('shown_as') or shown_as_default" />
+                    <div class="form-text">Your first name and the first letter of your last name, unless you change it.</div>
+                </div>
+                <fieldset t-if="photos" class="mb-3">
+                    <legend class="form-label fs-6 fw-bold">Add photos (optional)</legend>
+                    <div class="row g-2">
+                        <div t-foreach="photos" t-as="photo" class="col-4 col-md-3">
+                            <label class="d-block border rounded p-1">
+                                <img t-att-src="'/my/records/photo/%s' % photo.id" class="img-fluid rounded mb-1"
+                                     t-att-alt="'%s photo' % dict(photo._fields['kind'].selection)[photo.kind]"
+                                     style="object-fit: cover; aspect-ratio: 1;" />
+                                <input type="checkbox" name="photo_ids" t-att-value="photo.id" class="form-check-input me-1"
+                                       t-att-checked="str(photo.id) in request.httprequest.form.getlist('photo_ids') or None" />
+                                <span class="small">Include</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" name="photo_consent" id="photo_consent" value="1" />
+                        <label class="form-check-label" for="photo_consent">
+                            The photos I've ticked may be shown publicly with my review. If I withdraw the
+                            review, they come down with it.
+                        </label>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Send my review</button>
+                <a href="/my/reviews" class="btn btn-link">Cancel</a>
+            </form>
+        </t>
+    </template>
+
+</odoo>

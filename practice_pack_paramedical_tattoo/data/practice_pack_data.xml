@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- What a paramedical tattoo practice treats. Sequences below the suite's
+         own starting types, so these come first and are used by default. -->
+    <record id="plan_type_areola_restoration" model="practice.plan.type">
+        <field name="name">Areola Restoration</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="plan_type_scar_camouflage" model="practice.plan.type">
+        <field name="name">Scar Camouflage</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="plan_type_scalp_micropigmentation" model="practice.plan.type">
+        <field name="name">Scalp Micropigmentation</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="plan_type_vitiligo" model="practice.plan.type">
+        <field name="name">Vitiligo Repigmentation</field>
+        <field name="sequence">40</field>
+    </record>
+
+    <record id="test_type_pigment_patch" model="practice.test.type">
+        <field name="name">Pigment patch test</field>
+        <field name="read_after_days">3</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="health_flag_bleeding_disorder" model="practice.health.flag">
+        <field name="name">Bleeding disorder</field>
+        <field name="sequence">10</field>
+        <field name="color">1</field>
+    </record>
+    <record id="health_flag_blood_thinners" model="practice.health.flag">
+        <field name="name">Takes blood thinners</field>
+        <field name="sequence">20</field>
+        <field name="color">1</field>
+    </record>
+    <record id="health_flag_keloid" model="practice.health.flag">
+        <field name="name">History of keloid scarring</field>
+        <field name="sequence">30</field>
+        <field name="color">2</field>
+    </record>
+
+    <record id="consent_form_tattoo_treatment" model="practice.consent.form">
+        <field name="name">Paramedical Tattoo Treatment Consent</field>
+        <field name="kind">treatment</field>
+        <field name="sequence">10</field>
+        <field name="body" type="html"><div>
+            <p>I understand that the procedure I am about to undergo involves the
+               introduction of pigment into the skin using a needle, and that this carries
+               risk of infection, allergic reaction, unsatisfactory cosmetic result, or the
+               need for additional sessions to achieve the desired result.</p>
+            <p>I have disclosed my relevant medical history to my practitioner, including
+               any bleeding disorders, blood-thinning medication, history of keloid
+               scarring, and known allergies. I understand that results vary and that no
+               specific outcome is guaranteed.</p>
+            <p>I have received aftercare instructions and understand it is my
+               responsibility to follow them.</p>
+        </div></field>
+    </record>
+
+    <record id="consent_form_pigment_patch_test" model="practice.consent.form">
+        <field name="name">Pigment Patch Test Consent</field>
+        <field name="kind">test</field>
+        <field name="sequence">10</field>
+        <field name="body" type="html"><div>
+            <p>I understand that a small amount of pigment will be applied to my skin to
+               check for an allergic reaction before treatment begins, and that I must
+               return to have it read within the window my practitioner specifies
+               (typically 48-72 hours). I will contact the practice immediately if I
+               notice redness, swelling, or other reaction before then.</p>
+        </div></field>
+    </record>
+</odoo>

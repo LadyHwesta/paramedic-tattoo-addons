@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="practice_plan_view_form_tattoo" model="ir.ui.view">
+        <field name="model">practice.plan</field>
+        <field name="inherit_id" ref="practice_base.practice_plan_view_form" />
+        <field name="arch" type="xml">
+            <field name="start_date" position="after">
+                <field name="related_surgery_date" />
+            </field>
+        </field>
+    </record>
+
+    <record id="practice_session_view_form_tattoo" model="ir.ui.view">
+        <field name="model">practice.session</field>
+        <field name="inherit_id" ref="practice_base.practice_session_view_form" />
+        <field name="arch" type="xml">
+            <field name="product_lot" position="after">
+                <field name="numbing_agent" />
+            </field>
+        </field>
+    </record>
+</odoo>

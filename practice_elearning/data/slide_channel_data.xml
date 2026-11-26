@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Built by practice_elearning/tools/build_course_data.py: edit there and rebuild. -->
+<odoo noupdate="1">
+
+    <record id="channel_records" model="slide.channel">
+        <field name="name">Client Records</field>
+        <field name="image_1920" type="base64" file="practice_elearning/static/img/cover_records.png" />
+        <field name="channel_type">training</field>
+        <field name="description" type="html"><p>Bring on a client, open a treatment plan, record consent and pre-treatment tests, and document each session.</p></field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('practice_base.group_practice_staff')])]" />
+    </record>
+    <record id="channel_records_s1" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Clients and treatment plans</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+    <record id="channel_records_s1_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Bringing on a client</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>Someone becomes a client the moment you tick <strong>Is a Client</strong>, whether they booked online or you're entering them after a consultation. Open <span class="oe-path">Practice › Clients › New</span>, or find them under Contacts and tick the box: a <strong>Client #</strong> is assigned automatically.</p><p>On the <strong>Client</strong> tab, fill in date of birth, emergency contact and referring provider. Under <strong>Before Treating</strong>, add the <strong>Health Flags</strong> that apply and any allergies, so every practitioner sees them before a session.</p><div class="oe-diagram"><img src="/practice_elearning/static/img/client_form.png" alt="A client's record with health flags" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a client's Client tab, with a health flag and an allergy recorded.</p></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-flag" /></span><div><span class="oe-callout-label">Your own health flags</span><p>Each practice keeps its own list in <span class="oe-path">Practice › Configuration › Health Flags</span>: for example Pregnant, Blood thinners or Recent injury.</p></div></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-globe" /></span><div><span class="oe-callout-label">Requested online?</span><p>A client who requests an appointment on your website is flagged and numbered automatically too. Fill in their health details at the first visit.</p></div></div></div></field>
+    </record>
+    <record id="channel_records_s1_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">The treatment plan</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>Everything that follows, consent, pre-treatment tests and sessions, hangs off a <strong>treatment plan</strong>: one per thing you're treating the client for. Choose the <strong>Treatment</strong> from your practice's list, add the <strong>Area / Focus</strong>, and set yourself as <strong>Primary Practitioner</strong>.</p><div class="oe-diagram"><div class="oe-flow"><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-inbox" /></span>Intake</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-heartbeat" /></span>In Treatment</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-check" /></span>Completed</div></div></div><p>Move the plan's status as you start, and again when it's done (or Discontinued).</p><div class="oe-diagram"><img src="/practice_elearning/static/img/plan_form.png" alt="A treatment plan" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a treatment plan, with the tabs the rest of this course uses.</p></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-list" /></span><div><span class="oe-callout-label">Your own treatments</span><p>Set up what your practice treats in <span class="oe-path">Practice › Configuration › Treatment Types</span>: "Deep tissue for back pain", "Sleep support", "Strength program"... Rename the starting "General treatment" to suit.</p></div></div></div></field>
+    </record>
+    <record id="channel_records_s2" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Consent and pre-treatment tests</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">22</field>
+    </record>
+    <record id="channel_records_s2_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Consent</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">23</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>One record per consent: treatment, pre-treatment test or photo release. Add a row on the plan's <strong>Consents</strong> tab; the <strong>Form</strong> fills in with your wording for that kind.</p><p>Print it from the record's <span class="oe-path">Print</span> menu, have the client sign, then click <strong>Mark Signed</strong>.</p><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-pencil" /></span><div><span class="oe-callout-label">Your own wording</span><p>Edit the forms, or add your own, in <span class="oe-path">Practice › Configuration › Consent Forms</span>. The first form of each kind is used for new consents.</p></div></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-camera" /></span><div><span class="oe-callout-label">Photos are separate</span><p>A photo release is its own consent: a client can say yes to treatment and no to photos. A printed but unsigned consent doesn't count.</p></div></div></div></field>
+    </record>
+    <record id="channel_records_s2_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Pre-treatment tests</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">24</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>A check before treatment starts, such as a skin patch test for an oil or remedy, or a fitness assessment. Add a row on the plan's <strong>Pre-treatment Tests</strong> tab: the test, what was tested and its lot number, and the date. <strong>Read On</strong> fills in from the test type's waiting time.</p><div class="oe-diagram"><div class="oe-flow"><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-eyedropper" /></span>Done today</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-clock-o" /></span>Read on the date</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-check-circle" /></span>Clear, or Reaction / Concern</div></div></div><p>Record the result with notes when you check it. Tests to read show on My Day.</p><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-refresh" /></span><div><span class="oe-callout-label">Only the latest counts</span><p>A new clear test replaces an old one. Set up your tests and their waiting times in <span class="oe-path">Practice › Configuration › Pre-treatment Test Types</span>.</p></div></div></div></field>
+    </record>
+    <record id="channel_records_s3" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Documenting a session</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">34</field>
+    </record>
+    <record id="channel_records_s3_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Documenting a session</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">35</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>A session is created for you when you complete an appointment, or you can add one on the plan's <strong>Sessions</strong> tab. Record the products used and their lot numbers, the area or focus, your session notes, and whether aftercare was given.</p><p>Add before and after photos; sessions on a plan are numbered in date order, so progress is easy to follow. Set <strong>Next Session Recommended</strong> and My Day reminds you to book it.</p><div class="oe-callout oe-callout-warning"><span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span><div><span class="oe-callout-label">If something went wrong</span><p>Tick <strong>Reaction or Concern</strong> and describe it.</p></div></div></div></field>
+    </record>
+    <record id="channel_records_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_records" />
+        <field name="is_published" eval="True" />
+        <field name="name">Check what you've learned</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">85</field>
+    </record>
+    <record id="channel_records_q1" model="slide.question">
+        <field name="slide_id" ref="channel_records_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A pre-treatment test came back clear two months ago, and a new one just came back clear too. Which one counts?</field>
+    </record>
+    <record id="channel_records_q1_a1" model="slide.answer">
+        <field name="question_id" ref="channel_records_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">The most recent one</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_records_q1_a2" model="slide.answer">
+        <field name="question_id" ref="channel_records_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">The oldest one</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q1_a3" model="slide.answer">
+        <field name="question_id" ref="channel_records_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Both, averaged</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q1_a4" model="slide.answer">
+        <field name="question_id" ref="channel_records_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">Neither: a plan needs three clear tests</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q2" model="slide.question">
+        <field name="slide_id" ref="channel_records_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">A client signs the treatment consent but not the photo release. Can you use their photos in your marketing?</field>
+    </record>
+    <record id="channel_records_q2_a1" model="slide.answer">
+        <field name="question_id" ref="channel_records_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Yes, treatment consent covers everything</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q2_a2" model="slide.answer">
+        <field name="question_id" ref="channel_records_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">No, the photo release is a separate consent</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_records_q2_a3" model="slide.answer">
+        <field name="question_id" ref="channel_records_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Only for some treatments</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q2_a4" model="slide.answer">
+        <field name="question_id" ref="channel_records_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only if the test was clear</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q3" model="slide.question">
+        <field name="slide_id" ref="channel_records_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">What does every consent, test and session attach to?</field>
+    </record>
+    <record id="channel_records_q3_a1" model="slide.answer">
+        <field name="question_id" ref="channel_records_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">The treatment plan</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_records_q3_a2" model="slide.answer">
+        <field name="question_id" ref="channel_records_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">The appointment</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q3_a3" model="slide.answer">
+        <field name="question_id" ref="channel_records_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">The practitioner</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q3_a4" model="slide.answer">
+        <field name="question_id" ref="channel_records_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Nothing, they're independent</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q4" model="slide.question">
+        <field name="slide_id" ref="channel_records_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Where do you add the health flags your practice checks before treating?</field>
+    </record>
+    <record id="channel_records_q4_a1" model="slide.answer">
+        <field name="question_id" ref="channel_records_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Practice › Configuration › Health Flags</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_records_q4_a2" model="slide.answer">
+        <field name="question_id" ref="channel_records_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">In each appointment</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q4_a3" model="slide.answer">
+        <field name="question_id" ref="channel_records_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">On the invoice</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_records_q4_a4" model="slide.answer">
+        <field name="question_id" ref="channel_records_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">They can't be changed</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling" model="slide.channel">
+        <field name="name">Scheduling &amp; Booking</field>
+        <field name="image_1920" type="base64" file="practice_elearning/static/img/cover_scheduling.png" />
+        <field name="channel_type">training</field>
+        <field name="description" type="html"><p>Set up practitioners and services, book appointments, confirm online requests, and let clients book themselves.</p></field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('practice_base.group_practice_staff')])]" />
+    </record>
+    <record id="channel_scheduling_s1" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
+        <field name="name">One-time setup</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+    <record id="channel_scheduling_s1_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
+        <field name="name">Adding yourself as a practitioner</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>Open <span class="oe-path">Practice › Configuration › Practitioners › New</span> and set <strong>User</strong> to your own login. Click into <strong>Working Hours</strong> to set the days and times you work: the booking page uses them to know when you're free, and time off you add there is respected.</p><p>Add your licence or certification number while you're there.</p><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-key" /></span><div><span class="oe-callout-label">One thing to know</span><p>Creating or editing a Working Hours calendar needs Administrator access. Adding a practitioner later who isn't an Administrator? Set their hours up for them the first time.</p></div></div></div></field>
+    </record>
+    <record id="channel_scheduling_s1_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
+        <field name="name">Your services, and the checks that come first</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p>In <span class="oe-path">Practice › Configuration › Services</span>, add one row per thing you offer, with its <strong>Duration</strong> and a <strong>Buffer After</strong> for cleanup or notes. Tick <strong>Bookable Online</strong> for anything a client may request themselves, often just a consultation or a first visit.</p><p>A service can require a <strong>clear pre-treatment test</strong> and a <strong>signed treatment consent</strong> before it can be booked, and can <strong>create a session</strong> record when it's completed.</p><div class="oe-diagram"><img src="/practice_elearning/static/img/service_form.png" alt="A service with its requirements" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>a treatment session that needs a clear test and signed consent first.</p></div><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-shield" /></span><div><span class="oe-callout-label">What the requirements do</span><p>A service with requirements can't be booked, by you or online, against a treatment plan until the plan meets them. Nothing gets booked ahead of the safety step.</p></div></div></div></field>
+    </record>
+    <record id="channel_scheduling_s2" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
+        <field name="name">Booking appointments</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">22</field>
+    </record>
+    <record id="channel_scheduling_s2_l1" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
+        <field name="name">Booking one yourself, and confirming a request</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">23</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><p><strong>Booking it yourself:</strong> <span class="oe-path">Practice › Appointments › New</span>: pick the client, the service and, for a service with requirements, the treatment plan it's for. The end time comes from the service's duration and buffer, and you can't double-book yourself.</p><div class="oe-diagram"><img src="/practice_elearning/static/img/appointment_new.png" alt="A new appointment" class="img-fluid" /><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Screenshot</span>booking an appointment.</p></div><p><strong>Confirming a web request:</strong> open <span class="oe-path">Practice › Records › Needs Confirmation</span>, check it and click <strong>Confirm</strong>: the client gets a confirmation email.</p><div class="oe-diagram"><div class="oe-flow"><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-user-times" /></span>No-show</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-ban" /></span>Cancel</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-check" /></span>Complete</div></div></div><p>Complete creates the linked session record for you, ready for your notes.</p></div></field>
+    </record>
+    <record id="channel_scheduling_s2_l2" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
+        <field name="name">The client's own online booking</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">24</field>
+        <field name="html_content" type="html"><div class="oe-course-content"><div class="oe-diagram"><div class="oe-flow"><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-list" /></span>Pick a service</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-calendar" /></span>Real open times</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-inbox" /></span>Lands in Needs Confirmation</div></div></div><p>A client only ever sees services marked <strong>Bookable Online</strong>.</p><div class="oe-callout"><span class="oe-callout-icon"><i class="fa fa-lock" /></span><div><span class="oe-callout-label">Services with requirements stay hidden until they're met</span><p>They only show once the client has a treatment plan that meets them. A brand-new client sees a consultation, not a treatment, until you've seen them and opened a plan. Nothing from their records is shown online.</p></div></div><p>Clients can cancel their own upcoming appointment, but only more than 24 hours ahead.</p></div></field>
+    </record>
+    <record id="channel_scheduling_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_scheduling" />
+        <field name="is_published" eval="True" />
+        <field name="name">Check what you've learned</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">74</field>
+    </record>
+    <record id="channel_scheduling_q1" model="slide.question">
+        <field name="slide_id" ref="channel_scheduling_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A brand-new client with no treatment plan opens the booking page. What can they book?</field>
+    </record>
+    <record id="channel_scheduling_q1_a1" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Only a consultation (or another service without requirements)</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_scheduling_q1_a2" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">Any treatment</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q1_a3" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Nothing until staff create an account</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q1_a4" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">A test only</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q2" model="slide.question">
+        <field name="slide_id" ref="channel_scheduling_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">Who can create or edit a practitioner's Working Hours?</field>
+    </record>
+    <record id="channel_scheduling_q2_a1" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Any staff member</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q2_a2" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">Only an Administrator</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_scheduling_q2_a3" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Only that practitioner</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q2_a4" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Clients, from their portal</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q3" model="slide.question">
+        <field name="slide_id" ref="channel_scheduling_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">How close to an appointment can a client still cancel it online?</field>
+    </record>
+    <record id="channel_scheduling_q3_a1" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Any time before it starts</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q3_a2" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">More than 24 hours ahead; closer than that, they call</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_scheduling_q3_a3" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">Never</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q3_a4" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only staff can cancel</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q4" model="slide.question">
+        <field name="slide_id" ref="channel_scheduling_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Completing an appointment for a service that creates a session does what?</field>
+    </record>
+    <record id="channel_scheduling_q4_a1" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Nothing extra</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q4_a2" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">Creates the linked session record, ready for your notes</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="channel_scheduling_q4_a3" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">Sends the client their photos</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="channel_scheduling_q4_a4" model="slide.answer">
+        <field name="question_id" ref="channel_scheduling_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">Closes the treatment plan</field>
+        <field name="is_correct" eval="False" />
+    </record>
+</odoo>

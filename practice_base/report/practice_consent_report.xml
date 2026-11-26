@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_practice_consent" model="ir.actions.report">
+        <field name="name">Client Consent Form</field>
+        <field name="model">practice.consent</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">practice_base.practice_consent</field>
+        <field name="report_file">practice_base.practice_consent</field>
+        <field name="print_report_name">
+            'Consent - %s' % (object.partner_id.name)
+        </field>
+        <field name="binding_model_id" ref="model_practice_consent" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="practice_consent">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <t t-if="o.form_id" t-esc="o.form_id.name" />
+                            <t t-else="" t-esc="dict(o._fields['consent_type'].selection).get(o.consent_type)" />
+                        </h2>
+                        <p>
+                            Client: <strong><span t-field="o.partner_id.name" /></strong>
+                            &#8195; Date: <span t-field="o.date" />
+                        </p>
+                        <p t-if="o.plan_id">
+                            Regarding: <span t-esc="o.plan_id.display_name" />
+                        </p>
+                        <div t-if="o.form_id" t-out="o.form_id.body" />
+
+                        <p class="mt-4">
+                            <span style="font-size:16px;">&#9744;</span>
+                            I have read and accept the above.
+                        </p>
+
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <p>_____________________________</p>
+                                <p>Client Signature</p>
+                            </div>
+                            <div class="col-6">
+                                <p>_____________________________</p>
+                                <p>Date</p>
+                            </div>
+                        </div>
+
+                        <p class="mt-4 small text-muted" t-if="o.signed">
+                            Recorded as signed on
+                            <span t-field="o.date" />
+                            <t t-if="o.signature_method">
+                                (<span t-esc="o.signature_method" />)
+                            </t>.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

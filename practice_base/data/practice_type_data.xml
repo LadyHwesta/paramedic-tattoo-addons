@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- A starting point for a new practice: rename these or add your own in
+         Configuration. New plans and tests use the first type in the list. -->
+    <record id="plan_type_general" model="practice.plan.type">
+        <field name="name">General treatment</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <record id="test_type_skin_patch" model="practice.test.type">
+        <field name="name">Skin patch test</field>
+        <field name="read_after_days">2</field>
+        <field name="sequence">100</field>
+    </record>
+</odoo>

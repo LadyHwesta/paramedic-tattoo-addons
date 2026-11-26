@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="blog_client_reviews" model="blog.blog">
+        <field name="name">Client Reviews</field>
+        <field name="subtitle">What our clients say</field>
+        <field name="is_practice_review_blog" eval="True" />
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_practice_service_staff,practice.service staff,model_practice_service,practice_base.group_practice_staff,1,1,1,1
+access_practice_appointment_staff,practice.appointment staff,model_practice_appointment,practice_base.group_practice_staff,1,1,1,1

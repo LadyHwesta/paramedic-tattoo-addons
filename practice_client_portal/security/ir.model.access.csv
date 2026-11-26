@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_practice_note_staff,practice.note staff,model_practice_note,practice_base.group_practice_staff,1,1,1,1
+access_practice_photo_staff,practice.photo staff,model_practice_photo,practice_base.group_practice_staff,1,1,1,1
+access_practice_photo_release_wizard_staff,practice.photo.release.wizard staff,model_practice_photo_release_wizard,practice_base.group_practice_staff,1,1,1,1
